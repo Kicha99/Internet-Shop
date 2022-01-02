@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.UI", "InternetShop.UI\InternetShop.UI.csproj", "{B84C26BC-277C-4023-A607-7577CEAF54D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop.UI", "InternetShop.UI\InternetShop.UI.csproj", "{B84C26BC-277C-4023-A607-7577CEAF54D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.BL.Interfaces", "InternetShop.BL.Interfaces\InternetShop.BL.Interfaces.csproj", "{15237E09-B49A-4AD2-9A0B-065C40F1E6EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B84C26BC-277C-4023-A607-7577CEAF54D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B84C26BC-277C-4023-A607-7577CEAF54D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B84C26BC-277C-4023-A607-7577CEAF54D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15237E09-B49A-4AD2-9A0B-065C40F1E6EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15237E09-B49A-4AD2-9A0B-065C40F1E6EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15237E09-B49A-4AD2-9A0B-065C40F1E6EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15237E09-B49A-4AD2-9A0B-065C40F1E6EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
