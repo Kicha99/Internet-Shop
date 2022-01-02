@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop.UI", "Internet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.BL.Interfaces", "InternetShop.BL.Interfaces\InternetShop.BL.Interfaces.csproj", "{15237E09-B49A-4AD2-9A0B-065C40F1E6EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.BL", "InternetShop.BL\InternetShop.BL.csproj", "{48410F9A-827D-4F7C-BDC9-AB1E49FED6BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{15237E09-B49A-4AD2-9A0B-065C40F1E6EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15237E09-B49A-4AD2-9A0B-065C40F1E6EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15237E09-B49A-4AD2-9A0B-065C40F1E6EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48410F9A-827D-4F7C-BDC9-AB1E49FED6BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48410F9A-827D-4F7C-BDC9-AB1E49FED6BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48410F9A-827D-4F7C-BDC9-AB1E49FED6BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48410F9A-827D-4F7C-BDC9-AB1E49FED6BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
