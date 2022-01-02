@@ -1,4 +1,5 @@
-﻿using InternetShop.UI.Models;
+﻿using InternetShop.BL.Interfaces;
+using InternetShop.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,11 +13,13 @@ namespace InternetShop.UI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IBusinessService _businessService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IBusinessService businessService)
         {
             _logger = logger;
-        }
+            _businessService = businessService;
+1        }
 
         public IActionResult Index()
         {
