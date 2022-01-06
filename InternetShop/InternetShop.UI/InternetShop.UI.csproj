@@ -13,4 +13,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.12" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InternetShop.BL.Interfaces\InternetShop.BL.Interfaces.csproj" />
+    <ProjectReference Include="..\InternetShop.CompositionRoot\InternetShop.CompositionRoot.csproj" />
+  </ItemGroup>
+
 </Project>
