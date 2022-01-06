@@ -19,7 +19,7 @@ namespace InternetShop.UI.Controllers
         {
             _logger = logger;
             _businessService = businessService;
-1        }
+        }
 
         public IActionResult Index()
         {
