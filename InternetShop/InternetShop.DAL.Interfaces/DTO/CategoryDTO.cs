@@ -11,6 +11,6 @@ namespace InternetShop.DAL.Interfaces.DTO
         public int Id { get; set; }
         public string Title { get; set; }
         public IEnumerable<CategoryDTO> Child { get; set; }
-        public IEnumerable<Product> Products { get; set; }
+        public IEnumerable<ProductDTO> Products { get; set; }
     }
 }
