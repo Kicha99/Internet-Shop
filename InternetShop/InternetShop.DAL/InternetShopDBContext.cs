@@ -19,12 +19,14 @@ namespace InternetShop.DAL
             modelBuilder.Entity<Category>()
                 .ToTable("Categories")
                 .HasMany(x => x.Products);
+            modelBuilder.Entity<Category>()
+                .HasMany(x => x.Child);
             modelBuilder.Entity<Order>()
                 .ToTable("Orders")
-                .HasMany(x => x.Products);
+                .HasMany(x => x.Products)
+                .WithMany(x => x.Orders);
             modelBuilder.Entity<Product>()
                 .ToTable("Products");
-                
 
         }
     }
