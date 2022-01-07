@@ -28,7 +28,8 @@ namespace InternetShop.DAL
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Category>()
                 .ToTable("Categories")
-                .HasMany(x => x.Products);
+                .HasMany(x => x.Products)
+                .WithOne(x => x.Category);
             modelBuilder.Entity<Category>()
                 .HasMany(x => x.Child);
             modelBuilder.Entity<Order>()
@@ -37,6 +38,7 @@ namespace InternetShop.DAL
                 .WithMany(x => x.Orders);
             modelBuilder.Entity<Product>()
                 .ToTable("Products");
+
 
         }
     }

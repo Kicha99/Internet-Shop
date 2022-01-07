@@ -13,5 +13,6 @@ namespace InternetShop.DAL.Entities
         public decimal Price { get; set; }
         public string Description { get; set; }
         public IEnumerable<Order> Orders { get; set; }
+        public Category Category { get; set; }
     }
 }
