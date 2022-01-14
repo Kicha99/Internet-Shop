@@ -12,11 +12,44 @@ namespace InternetShop.DAL.ConsoleDebug
             //1. Add Product
             ProductDTO product = new ProductDTO()
             {
-                 Description = "22222",
-                 Price = 2.3M,
-                 Title = "Arduino"
+                Description = "CheckDelete",
+                Price = 2123.3M,
+                Title = "Arduino"
             };
-            ds.AddProduct(product);
+            //ds.AddProduct(product);
+            //2. Remove Product
+            //ProductDTO delProduct = new ProductDTO()
+            //{
+            //    Description = "CheckDelete",
+            //    Price = 2123.4M,
+            //    Title = "Arduino"
+            //};
+            //ds.AddProduct(delProduct);
+            /*ds.RemoveProduct(delProduct);*/ //Корректировка Id?
+            //3. Edit Product
+            //product.Price = 22.7M;
+            //product.Description = "Edit";
+            //ds.EditProduct(product);//???
+
+            //1.Add Category
+            CategoryDTO category = new CategoryDTO()
+            {
+                Title = "Cars",
+
+            };
+            //ds.AddCategory(category);
+            //2.Remove Category
+            //ds.AddCategory(category);
+            //ds.RemoveCategory(category);
+            //3.Edit Category
+            //...
+            //1. Add Order
+            OrderDTO order = new OrderDTO()
+            {
+                ClientId = 1,
+            };
+            ds.AddOrder(order);
+            //1. Remove Order and Edit Order?
         }
     }
 }
