@@ -26,12 +26,13 @@ namespace InternetShop.DAL.ConsoleDebug
                 Id = 1
             };
             //ds.AddProduct(delProduct);
-            ds.RemoveProductById(13);
+            //ds.RemoveProductById(13);
             /*ds.RemoveProduct(delProduct);*/ //Корректировка Id?
             //3.Edit Product
-            //product.Price = 22.7M;
-            //product.Description = "Edit";
-            //ds.EditProduct(product);//???
+            product.Price = 22.7M;
+            product.Description = "Edit";
+            product.Id = 12;
+            ds.EditProduct(product);//???
 
             //1.Add Category
             //CategoryDTO category = new CategoryDTO()

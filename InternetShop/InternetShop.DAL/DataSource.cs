@@ -34,9 +34,10 @@ namespace InternetShop.DAL
             {
                 Description = product.Description,
                 Price = product.Price,
-                Title = product.Title
+                Title = product.Title,
+                Id = product.Id
             };
-            //_dBContext.Products.Update(editP);
+            _dBContext.Products.Update(editP);
             _dBContext.SaveChanges();
         }
 
