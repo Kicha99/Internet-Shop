@@ -35,15 +35,16 @@ namespace InternetShop.DAL.ConsoleDebug
             ds.EditProduct(product);//???
 
             //1.Add Category
-            //CategoryDTO category = new CategoryDTO()
-            //{
-            //    Title = "Cars",
+            CategoryDTO category = new CategoryDTO()
+            {
+                Title = "Cars",
 
-            //};
+            };
             //ds.AddCategory(category);
             //2.Remove Category
             //ds.AddCategory(category);
-            //ds.RemoveCategory(category);
+            category.Id = 4;
+            ds.RemoveCategoryById(category.Id);
             //3.Edit Category
             //...
             //1. Add Order

@@ -81,5 +81,12 @@ namespace InternetShop.DAL
                 throw new ArgumentException();
             _dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM PRODUCTS  WHERE ID={id}");
         }
+
+        public void RemoveCategoryById(int id)
+        {
+            if (id <= 0)
+                throw new ArgumentException();
+            _dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE ID={id}");
+        }
     }
 }
