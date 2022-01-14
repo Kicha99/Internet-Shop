@@ -45,6 +45,7 @@ namespace InternetShop.DAL.ConsoleDebug
             //ds.AddCategory(category);
             category.Id = 6;
             ds.RemoveCategoryById(category.Id);
+            ds.GetProductsByCategoryId();
             //3.Edit Category
             //...
             //1. Add Order
