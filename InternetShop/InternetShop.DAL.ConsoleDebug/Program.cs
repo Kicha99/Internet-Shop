@@ -26,7 +26,7 @@ namespace InternetShop.DAL.ConsoleDebug
                 Id = 1
             };
             //ds.AddProduct(delProduct);
-            ds.RemoveProductById(16);
+            ds.RemoveProductById(13);
             /*ds.RemoveProduct(delProduct);*/ //Корректировка Id?
             //3.Edit Product
             //product.Price = 22.7M;

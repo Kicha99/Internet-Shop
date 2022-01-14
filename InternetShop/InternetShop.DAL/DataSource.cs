@@ -27,21 +27,6 @@ namespace InternetShop.DAL
             _dBContext.SaveChanges();
 
         }
-
-        private int GetProductId(ProductDTO p)
-        {
-            // не устойчиво к изменениям?
-            return _dBContext.Products.FirstOrDefault(t => t.Title == p.Title 
-                                            && t.Description == p.Description 
-                                            && t.Price == p.Price).Id;
-        }
-        public void RemoveProduct(ProductDTO delProduct)
-        {
-            Product product = _dBContext.Products.Find(GetProductId(delProduct));
-            _dBContext.Products.Remove(product);
-            _dBContext.SaveChanges();
-        }
-
         public void EditProduct(ProductDTO product)
         {
             //?

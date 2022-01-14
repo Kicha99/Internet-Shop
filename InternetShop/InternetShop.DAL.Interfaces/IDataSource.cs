@@ -10,7 +10,6 @@ namespace InternetShop.DAL.Interfaces
     public interface IDataSource
     {
         void AddProduct(ProductDTO product);
-        void RemoveProduct(ProductDTO delProduct);
         void RemoveProductById(int id);
         void EditProduct(ProductDTO product);
         void AddCategory(CategoryDTO category);
