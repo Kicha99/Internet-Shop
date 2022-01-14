@@ -4,6 +4,7 @@ using InternetShop.DAL.Interfaces.DTO;
 using System.Linq;
 using System;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace InternetShop.DAL
 {
@@ -73,6 +74,31 @@ namespace InternetShop.DAL
             if (id <= 0)
                 throw new ArgumentException();
             _dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE ID={id}");
+        }
+
+        public IEnumerable<ProductDTO> GetProductsById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<CategoryDTO> GetTopCategories()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<CategoryDTO> GetChildCategoriesById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<OrderDTO> GetOrders()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<OrderDTO> GetOrdersByClient(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
