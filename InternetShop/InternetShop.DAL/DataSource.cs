@@ -50,20 +50,6 @@ namespace InternetShop.DAL
             _dBContext.Categories.Add(newCategory);
             _dBContext.SaveChanges();
         }
-
-        private int GetCategoryId(CategoryDTO c)
-        {
-            // не устойчиво к изменениям?
-            return _dBContext.Categories.FirstOrDefault(t => t.Title == c.Title).Id;
-        }
-
-        public void RemoveCategory(CategoryDTO category)
-        {
-            Category deleteCategory = _dBContext.Categories.Find(GetCategoryId(category));
-            _dBContext.Categories.Remove(deleteCategory);
-            _dBContext.SaveChanges();
-        }
-
         public void AddOrder(OrderDTO order)
         {
             Order newOrder = new Order()

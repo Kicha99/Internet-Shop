@@ -43,7 +43,7 @@ namespace InternetShop.DAL.ConsoleDebug
             //ds.AddCategory(category);
             //2.Remove Category
             //ds.AddCategory(category);
-            category.Id = 4;
+            category.Id = 6;
             ds.RemoveCategoryById(category.Id);
             //3.Edit Category
             //...
