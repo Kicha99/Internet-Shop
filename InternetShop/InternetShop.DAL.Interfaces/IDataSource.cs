@@ -11,6 +11,7 @@ namespace InternetShop.DAL.Interfaces
     {
         void AddProduct(ProductDTO product);
         void RemoveProduct(ProductDTO delProduct);
+        void RemoveProductById(int id);
         void EditProduct(ProductDTO product);
         void AddCategory(CategoryDTO category);
         void RemoveCategory(CategoryDTO category);

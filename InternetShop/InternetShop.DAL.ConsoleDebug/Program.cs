@@ -18,25 +18,27 @@ namespace InternetShop.DAL.ConsoleDebug
             };
             //ds.AddProduct(product);
             //2. Remove Product
-            //ProductDTO delProduct = new ProductDTO()
-            //{
-            //    Description = "CheckDelete",
-            //    Price = 2123.4M,
-            //    Title = "Arduino"
-            //};
+            ProductDTO delProduct = new ProductDTO()
+            {
+                Description = "CheckDelete",
+                Price = 2123.4M,
+                Title = "Arduino",
+                Id = 1
+            };
             //ds.AddProduct(delProduct);
+            ds.RemoveProductById(16);
             /*ds.RemoveProduct(delProduct);*/ //Корректировка Id?
-            //3. Edit Product
+            //3.Edit Product
             //product.Price = 22.7M;
             //product.Description = "Edit";
             //ds.EditProduct(product);//???
 
             //1.Add Category
-            CategoryDTO category = new CategoryDTO()
-            {
-                Title = "Cars",
+            //CategoryDTO category = new CategoryDTO()
+            //{
+            //    Title = "Cars",
 
-            };
+            //};
             //ds.AddCategory(category);
             //2.Remove Category
             //ds.AddCategory(category);
@@ -44,11 +46,11 @@ namespace InternetShop.DAL.ConsoleDebug
             //3.Edit Category
             //...
             //1. Add Order
-            OrderDTO order = new OrderDTO()
-            {
-                ClientId = 1,
-            };
-            ds.AddOrder(order);
+            //OrderDTO order = new OrderDTO()
+            //{
+            //    ClientId = 1,
+            //};
+            //ds.AddOrder(order);
             //1. Remove Order and Edit Order?
         }
     }
