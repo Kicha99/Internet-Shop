@@ -76,9 +76,18 @@ namespace InternetShop.DAL
             _dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE ID={id}");
         }
 
-        public IEnumerable<ProductDTO> GetProductsById(int id)
+        public IEnumerable<ProductDTO> GetProductsByCategoryId(int id)
         {
-            throw new NotImplementedException();
+            IEnumerable<ProductDTO> products = from p in _dBContext.Products
+                                               where p.Category.Id == id
+                                               select new ProductDTO()
+                                               {
+                                                    Id = p.Id,
+                                                    Description = p.Description,
+                                                    Price = p.Price,
+                                                    Title = p.Title
+                                               };
+            return products.ToList();
         }
 
         public IEnumerable<CategoryDTO> GetTopCategories()
