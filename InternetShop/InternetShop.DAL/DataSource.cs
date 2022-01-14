@@ -92,7 +92,14 @@ namespace InternetShop.DAL
 
         public IEnumerable<CategoryDTO> GetTopCategories()
         {
-            throw new NotImplementedException();
+            IEnumerable<CategoryDTO> categories = from p in _dBContext.Categories
+                                                  where p.Child == null
+                                                  select new CategoryDTO()
+                                                  {
+                                                      Id = p.Id,
+                                                      Title = p.Title
+                                                  };
+            return categories.ToList();
         }
 
         public IEnumerable<CategoryDTO> GetChildCategoriesById(int id)
