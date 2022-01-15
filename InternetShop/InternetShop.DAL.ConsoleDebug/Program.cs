@@ -43,7 +43,7 @@ namespace InternetShop.DAL.ConsoleDebug
             //ds.AddCategory(category);
             //2.Remove Category
             //ds.AddCategory(category);
-            category.Id = 6;
+            //category.Id = 6;
             //ds.RemoveCategoryById(category.Id);
             //ds.GetProductsByCategoryId();
             //3.Edit Category
@@ -61,9 +61,14 @@ namespace InternetShop.DAL.ConsoleDebug
 
             //var order = ds.GetOrders();
             //var child = ds.GetChildCategoriesById(16);
-            category.Title = "as123 asdasfa";
-            category.Id = 13;
-            ds.EditCategory(category);
+            //category.Title = "as123 asdasfa";
+            //category.Id = 13;
+            //ds.EditCategory(category);
+
+            OrderDTO order = ds.GetOrderById(1);
+            
+            
+            
 
         }
     }

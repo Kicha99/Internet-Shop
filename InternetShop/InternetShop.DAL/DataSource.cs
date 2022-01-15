@@ -152,5 +152,37 @@ namespace InternetShop.DAL
             _dBContext.Categories.Update(changedCategory);
             _dBContext.SaveChanges();
         }
+
+        public void EditOrder(OrderDTO order)
+        {
+            Order changedOrder = new Order()
+            {
+                Id = order.Id,
+                ClientId = order.ClientId
+            };
+            _dBContext.Orders.Update(changedOrder);
+            _dBContext.SaveChanges();
+        }
+
+        public OrderDTO GetOrderById(int id)
+        {
+            OrderDTO order = (from p in _dBContext.Orders
+                              where p.Id == id
+                              select new OrderDTO()
+                              {
+                                  Id = p.Id,
+                                  ClientId = p.ClientId,
+                                  Products = from x in p.Products
+                                             select new ProductDTO()
+                                             {
+                                                 Description = x.Description,
+                                                 Id = x.Id,
+                                                 Price = x.Price,
+                                                 Title = x.Title
+                                             }
+                              }).FirstOrDefault();
+
+            return order;
+        }
     }
 }
