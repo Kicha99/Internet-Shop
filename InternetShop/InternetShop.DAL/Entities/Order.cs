@@ -10,6 +10,10 @@ namespace InternetShop.DAL.Entities
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
-        public IEnumerable<Product> Products { get; set; }
+        public IList<Product> Products { get; set; }
+        public Order()
+        {
+            Products = new List<Product>();
+        }
     }
 }

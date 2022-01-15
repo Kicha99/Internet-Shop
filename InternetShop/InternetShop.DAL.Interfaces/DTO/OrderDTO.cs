@@ -10,6 +10,6 @@ namespace InternetShop.DAL.Interfaces.DTO
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
-        public IEnumerable<ProductDTO> Products { get; set; }
+        public IList<ProductDTO> Products { get; set; }
     }
 }

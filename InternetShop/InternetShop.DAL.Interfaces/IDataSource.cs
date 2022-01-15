@@ -20,6 +20,8 @@ namespace InternetShop.DAL.Interfaces
         OrderDTO GetOrderById(int id);
         IEnumerable<ProductDTO> GetProductsByCategoryId(int id);
         ProductDTO GetProductById(int id);
+
+        void AddProductToOrder(OrderDTO order, ProductDTO product);
         IEnumerable<CategoryDTO> GetTopCategories();
         IEnumerable<CategoryDTO> GetChildCategoriesById(int id);
         IEnumerable<OrderDTO> GetOrders();

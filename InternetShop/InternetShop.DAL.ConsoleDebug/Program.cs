@@ -1,5 +1,6 @@
 ﻿using InternetShop.DAL.Interfaces;
 using InternetShop.DAL.Interfaces.DTO;
+using System.Linq;
 using System;
 
 namespace InternetShop.DAL.ConsoleDebug
@@ -66,7 +67,9 @@ namespace InternetShop.DAL.ConsoleDebug
             //ds.EditCategory(category);
 
             OrderDTO order = ds.GetOrderById(1);
-            
+            ProductDTO product1 = ds.GetProductById(10);
+            ds.AddProductToOrder(order, product1);
+            OrderDTO actualOrder = ds.GetOrderById(1);
             
             
 
