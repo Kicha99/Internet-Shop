@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InternetShop.DAL.Migrations
 {
     [DbContext(typeof(InternetShopDBContext))]
-    [Migration("20220114190318_CategoryId")]
+    [Migration("20220115072421_CategoryId")]
     partial class CategoryId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
