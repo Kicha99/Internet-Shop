@@ -104,7 +104,14 @@ namespace InternetShop.DAL
 
         public IEnumerable<CategoryDTO> GetChildCategoriesById(int id)
         {
-            throw new NotImplementedException();
+            IEnumerable<CategoryDTO> child = from p in _dBContext.Categories
+                                             where p.CategoryId == id
+                                             select new CategoryDTO()
+                                             {
+                                                 Id = p.Id,
+                                                 Title = p.Title
+                                             };
+            return child.ToList();
         }
 
         public IEnumerable<OrderDTO> GetOrders()
