@@ -93,7 +93,7 @@ namespace InternetShop.DAL
         public IEnumerable<CategoryDTO> GetTopCategories()
         {
             IEnumerable<CategoryDTO> categories = from p in _dBContext.Categories
-                                                  where p.Child == null
+                                                  where !p.CategoryId.HasValue 
                                                   select new CategoryDTO()
                                                   {
                                                       Id = p.Id,
