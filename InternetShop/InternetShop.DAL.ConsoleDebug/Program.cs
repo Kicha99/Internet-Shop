@@ -59,7 +59,11 @@ namespace InternetShop.DAL.ConsoleDebug
             //Get top categories
             //var root = ds.GetTopCategories();
 
-            var order = ds.GetOrders();
+            //var order = ds.GetOrders();
+            //var child = ds.GetChildCategoriesById(16);
+            category.Title = "as123 asdasfa";
+            category.Id = 13;
+            ds.EditCategory(category);
 
         }
     }

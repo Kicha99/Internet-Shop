@@ -71,6 +71,9 @@ namespace InternetShop.DAL
 
         public void RemoveCategoryById(int id)
         {
+            // TODO: What should we do with child categories?
+            // Remove or Assign as root
+            // TODO: Thinking about other cases while remove categories
             if (id <= 0)
                 throw new ArgumentException();
             _dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE ID={id}");
@@ -136,6 +139,18 @@ namespace InternetShop.DAL
         public IEnumerable<OrderDTO> GetOrdersByClient(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public void EditCategory(CategoryDTO category)
+        {
+            Category changedCategory = new Category()
+            {
+                CategoryId = category.Id,
+                Id = category.Id,
+                Title = category.Title
+            };
+            _dBContext.Categories.Update(changedCategory);
+            _dBContext.SaveChanges();
         }
     }
 }

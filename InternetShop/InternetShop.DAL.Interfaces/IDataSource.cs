@@ -14,6 +14,7 @@ namespace InternetShop.DAL.Interfaces
         void EditProduct(ProductDTO product);
         void AddCategory(CategoryDTO category);
         void RemoveCategoryById(int id);
+        void EditCategory(CategoryDTO category);
         void AddOrder(OrderDTO order);
         IEnumerable<ProductDTO> GetProductsByCategoryId(int id);
         IEnumerable<CategoryDTO> GetTopCategories();
