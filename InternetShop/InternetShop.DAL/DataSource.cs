@@ -116,7 +116,21 @@ namespace InternetShop.DAL
 
         public IEnumerable<OrderDTO> GetOrders()
         {
-            throw new NotImplementedException();
+            IEnumerable<OrderDTO> orders = from p in _dBContext.Orders
+                                           select new OrderDTO()
+                                           {
+                                               ClientId = p.ClientId,
+                                               Products = from x in p.Products
+                                                          select new ProductDTO()
+                                                          {
+                                                              Description = x.Description,
+                                                              Id = x.Id,
+                                                              Price = x.Price,
+                                                              Title = x.Title
+                                                          },
+                                                Id = p.Id
+                                           };
+            return orders.ToList();
         }
 
         public IEnumerable<OrderDTO> GetOrdersByClient(int id)

@@ -57,7 +57,9 @@ namespace InternetShop.DAL.ConsoleDebug
             //1. Remove Order and Edit Order?
 
             //Get top categories
-            var root = ds.GetTopCategories();
+            //var root = ds.GetTopCategories();
+
+            var order = ds.GetOrders();
 
         }
     }
