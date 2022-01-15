@@ -71,6 +71,9 @@ namespace InternetShop.DAL
 
         public void RemoveCategoryById(int id)
         {
+            // TODO: What should we do with child categories?
+            // Remove or Assign as root
+            // TODO: Thinking about other cases while remove categories
             if (id <= 0)
                 throw new ArgumentException();
             _dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE ID={id}");
@@ -104,15 +107,53 @@ namespace InternetShop.DAL
 
         public IEnumerable<CategoryDTO> GetChildCategoriesById(int id)
         {
-            throw new NotImplementedException();
+            IEnumerable<CategoryDTO> child = from p in _dBContext.Categories
+                                             where p.CategoryId == id
+                                             select new CategoryDTO()
+                                             {
+                                                 Id = p.Id,
+                                                 Title = p.Title
+                                             };
+            return child.ToList();
         }
 
         public IEnumerable<OrderDTO> GetOrders()
         {
-            throw new NotImplementedException();
+            IEnumerable<OrderDTO> orders = from p in _dBContext.Orders
+                                           select new OrderDTO()
+                                           {
+                                               ClientId = p.ClientId,
+                                               Products = from x in p.Products
+                                                          select new ProductDTO()
+                                                          {
+                                                              Description = x.Description,
+                                                              Id = x.Id,
+                                                              Price = x.Price,
+                                                              Title = x.Title
+                                                          },
+                                                Id = p.Id
+                                           };
+            return orders.ToList();
         }
 
         public IEnumerable<OrderDTO> GetOrdersByClient(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditCategory(CategoryDTO category)
+        {
+            Category changedCategory = new Category()
+            {
+                CategoryId = category.Id,
+                Id = category.Id,
+                Title = category.Title
+            };
+            _dBContext.Categories.Update(changedCategory);
+            _dBContext.SaveChanges();
+        }
+
+        public void EditOrder(OrderDTO order)
         {
             throw new NotImplementedException();
         }
