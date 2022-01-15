@@ -32,7 +32,7 @@ namespace InternetShop.DAL.ConsoleDebug
             product.Price = 22.7M;
             product.Description = "Edit";
             product.Id = 12;
-            ds.EditProduct(product);//???
+            //ds.EditProduct(product);//???
 
             //1.Add Category
             CategoryDTO category = new CategoryDTO()
@@ -44,7 +44,7 @@ namespace InternetShop.DAL.ConsoleDebug
             //2.Remove Category
             //ds.AddCategory(category);
             category.Id = 6;
-            ds.RemoveCategoryById(category.Id);
+            //ds.RemoveCategoryById(category.Id);
             //ds.GetProductsByCategoryId();
             //3.Edit Category
             //...
@@ -55,6 +55,10 @@ namespace InternetShop.DAL.ConsoleDebug
             //};
             //ds.AddOrder(order);
             //1. Remove Order and Edit Order?
+
+            //Get top categories
+            var root = ds.GetTopCategories();
+
         }
     }
 }
