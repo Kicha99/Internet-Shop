@@ -71,8 +71,8 @@ namespace InternetShop.DAL.ConsoleDebug
             //ds.AddProductToOrder(order, product1);
             //OrderDTO actualOrder = ds.GetOrderById(1);
             var myP = ds.GetProductById(21);
-            
-            ds.AddProductToCategory()
+            var myC = ds.GetCategoryById(19);
+            ds.AddProductToCategory(myC, myP);
             
             
 
