@@ -228,5 +228,17 @@ namespace InternetShop.DAL
             tmpCategory.Products.Add(tmpProduct);
             _dBContext.SaveChanges();
         }
+
+        public CategoryDTO GetCategoryById(int id)
+        {
+            CategoryDTO category = (from p in _dBContext.Categories
+                                    where p.Id == id
+                                    select new CategoryDTO()
+                                    {
+                                        Id = p.Id,
+                                        Title = p.Title
+                                    }).FirstOrDefault();
+            return category;
+        }
     }
 }
