@@ -78,9 +78,11 @@ namespace InternetShop.DAL
             //2) If we remove category, we need to change categories for products that contains old category(categories) 
             if (id <= 0)
                 throw new ArgumentException();
-            _dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE ID={id}");
-            _dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE CategoryID={id}");
-            _dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM Products WHERE CategoryID={id}");
+            //_dBContext.Categories.Remove();
+            //_dBContext.Database.ExecuteSqlInterpolated($"DELETE Products FROM CATEGORIES WHERE ID={id}");
+            //_dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE CategoryId={id}");
+            //_dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE ID={id}");
+
         }
 
         public IEnumerable<ProductDTO> GetProductsByCategoryId(int id)
@@ -216,6 +218,14 @@ namespace InternetShop.DAL
             var prod = (from p in _dBContext.Products where p.Id == product.Id select p).FirstOrDefault();
             var myOrder = (from p in _dBContext.Orders where p.Id == order.Id select p).FirstOrDefault();
             myOrder.Products.Add(prod);
+            _dBContext.SaveChanges();
+        }
+
+        public void AddProductToCategory(CategoryDTO category, ProductDTO product)
+        {
+            var tmpCategory = (from c in _dBContext.Categories where c.Id == category.Id select c).FirstOrDefault();
+            var tmpProduct = (from p in _dBContext.Products where p.Id == product.Id select p).FirstOrDefault();
+            tmpCategory.Products.Add(tmpProduct);
             _dBContext.SaveChanges();
         }
     }

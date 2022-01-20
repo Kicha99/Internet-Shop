@@ -45,7 +45,7 @@ namespace InternetShop.DAL.ConsoleDebug
             //2.Remove Category
             //ds.AddCategory(category);
             //category.Id = 6;
-            ds.RemoveCategoryById(13);
+            //ds.RemoveCategoryById(13);
             //ds.GetProductsByCategoryId();
             //3.Edit Category
             //...
