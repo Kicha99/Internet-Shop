@@ -225,7 +225,7 @@ namespace InternetShop.DAL
         {
             var tmpCategory = (from c in _dBContext.Categories where c.Id == category.Id select c).FirstOrDefault();
             var tmpProduct = (from p in _dBContext.Products where p.Id == product.Id select p).FirstOrDefault();
-            tmpCategory.Products.Add(tmpProduct);
+            tmpCategory.Products.Add(tmpProduct);//Null Reference Exception
             _dBContext.SaveChanges();
         }
 
@@ -236,7 +236,17 @@ namespace InternetShop.DAL
                                     select new CategoryDTO()
                                     {
                                         Id = p.Id,
-                                        Title = p.Title
+                                        Title = p.Title,
+                                        Products = (from x in _dBContext.Products
+                                                    where p.CategoryId == x.Id
+                                                    select new ProductDTO()
+                                                    {
+                                                        Description = x.Description,
+                                                        Id = x.Id,
+                                                        Price = x.Price,
+                                                        Title = x.Title
+                                                    }).ToList()
+                                        
                                     }).FirstOrDefault();
             return category;
         }
