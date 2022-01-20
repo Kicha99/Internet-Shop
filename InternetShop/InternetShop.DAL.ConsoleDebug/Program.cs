@@ -45,7 +45,7 @@ namespace InternetShop.DAL.ConsoleDebug
             //2.Remove Category
             //ds.AddCategory(category);
             //category.Id = 6;
-            //ds.RemoveCategoryById(category.Id);
+            ds.RemoveCategoryById(13);
             //ds.GetProductsByCategoryId();
             //3.Edit Category
             //...
@@ -66,10 +66,10 @@ namespace InternetShop.DAL.ConsoleDebug
             //category.Id = 13;
             //ds.EditCategory(category);
 
-            OrderDTO order = ds.GetOrderById(1);
-            ProductDTO product1 = ds.GetProductById(10);
-            ds.AddProductToOrder(order, product1);
-            OrderDTO actualOrder = ds.GetOrderById(1);
+            //OrderDTO order = ds.GetOrderById(1);
+            //ProductDTO product1 = ds.GetProductById(10);
+            //ds.AddProductToOrder(order, product1);
+            //OrderDTO actualOrder = ds.GetOrderById(1);
             
             
 

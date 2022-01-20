@@ -74,9 +74,11 @@ namespace InternetShop.DAL
             // TODO: What should we do with child categories?
             // Remove or Assign as root
             // TODO: Thinking about other cases while remove categories
+            //1) If we remove category, we need to remove all its child
+            //2) If we remove category, we need to change categories for products that contains old category(categories) 
             if (id <= 0)
                 throw new ArgumentException();
-            _dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE ID={id}");
+            _dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE ID={id} && CategoryId={id}");
         }
 
         public IEnumerable<ProductDTO> GetProductsByCategoryId(int id)
