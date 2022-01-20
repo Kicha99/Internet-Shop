@@ -26,5 +26,6 @@ namespace InternetShop.DAL.Interfaces
         void EditOrder(OrderDTO order);//Update Order
 
         void AddProductToOrder(OrderDTO order, ProductDTO product);
+        void AddProductToCategory(CategoryDTO category, ProductDTO product);
     }
 }

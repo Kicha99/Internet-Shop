@@ -74,9 +74,15 @@ namespace InternetShop.DAL
             // TODO: What should we do with child categories?
             // Remove or Assign as root
             // TODO: Thinking about other cases while remove categories
+            //1) If we remove category, we need to remove all its child
+            //2) If we remove category, we need to change categories for products that contains old category(categories) 
             if (id <= 0)
                 throw new ArgumentException();
-            _dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE ID={id}");
+            //_dBContext.Categories.Remove();
+            //_dBContext.Database.ExecuteSqlInterpolated($"DELETE Products FROM CATEGORIES WHERE ID={id}");
+            //_dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE CategoryId={id}");
+            //_dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE ID={id}");
+
         }
 
         public IEnumerable<ProductDTO> GetProductsByCategoryId(int id)
@@ -123,14 +129,14 @@ namespace InternetShop.DAL
                                            select new OrderDTO()
                                            {
                                                ClientId = p.ClientId,
-                                               Products = from x in p.Products
+                                               Products = (from x in p.Products
                                                           select new ProductDTO()
                                                           {
                                                               Description = x.Description,
                                                               Id = x.Id,
                                                               Price = x.Price,
                                                               Title = x.Title
-                                                          },
+                                                          }).ToList(),
                                                 Id = p.Id
                                            };
             return orders.ToList();
@@ -155,13 +161,21 @@ namespace InternetShop.DAL
 
         public void EditOrder(OrderDTO order)
         {
-            Order changedOrder = new Order()
-            {
-                Id = order.Id,
-                ClientId = order.ClientId
-            };
-            _dBContext.Orders.Update(changedOrder);
-            _dBContext.SaveChanges();
+            //Order changedOrder = new Order()
+            //{
+            //    Id = order.Id,
+            //    ClientId = order.ClientId,
+            //    Products = from p in order.Products
+            //               select new Product()
+            //               {
+            //                    Id = p.Id,
+            //                    Description = p.Description,
+            //                    Price = p.Price,
+            //                    Title = p.Title
+            //               }
+            //}
+            //_dBContext.Orders.Update(changedOrder);
+            //_dBContext.SaveChanges();
         }
 
         public OrderDTO GetOrderById(int id)
@@ -172,14 +186,14 @@ namespace InternetShop.DAL
                               {
                                   Id = p.Id,
                                   ClientId = p.ClientId,
-                                  Products = from x in p.Products
+                                  Products = (from x in p.Products
                                              select new ProductDTO()
                                              {
                                                  Description = x.Description,
                                                  Id = x.Id,
                                                  Price = x.Price,
                                                  Title = x.Title
-                                             }
+                                             }).ToList()
                               }).FirstOrDefault();
 
             return order;
@@ -197,6 +211,22 @@ namespace InternetShop.DAL
                                       Title = p.Title
                                   }).FirstOrDefault();
             return product;
+        }
+
+        public void AddProductToOrder(OrderDTO order, ProductDTO product)
+        { 
+            var prod = (from p in _dBContext.Products where p.Id == product.Id select p).FirstOrDefault();
+            var myOrder = (from p in _dBContext.Orders where p.Id == order.Id select p).FirstOrDefault();
+            myOrder.Products.Add(prod);
+            _dBContext.SaveChanges();
+        }
+
+        public void AddProductToCategory(CategoryDTO category, ProductDTO product)
+        {
+            var tmpCategory = (from c in _dBContext.Categories where c.Id == category.Id select c).FirstOrDefault();
+            var tmpProduct = (from p in _dBContext.Products where p.Id == product.Id select p).FirstOrDefault();
+            tmpCategory.Products.Add(tmpProduct);
+            _dBContext.SaveChanges();
         }
     }
 }
