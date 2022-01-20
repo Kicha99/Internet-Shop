@@ -78,6 +78,11 @@ namespace InternetShop.DAL
             //2) If we remove category, we need to change categories for products that contains old category(categories) 
             if (id <= 0)
                 throw new ArgumentException();
+            var products = from p in _dBContext.Categories
+                           where p.Id == id
+                           select p.Products;//?
+            
+
             //_dBContext.Categories.Remove();
             //_dBContext.Database.ExecuteSqlInterpolated($"DELETE Products FROM CATEGORIES WHERE ID={id}");
             //_dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE CategoryId={id}");
@@ -225,7 +230,7 @@ namespace InternetShop.DAL
         {
             var tmpCategory = (from c in _dBContext.Categories where c.Id == category.Id select c).FirstOrDefault();
             var tmpProduct = (from p in _dBContext.Products where p.Id == product.Id select p).FirstOrDefault();
-            tmpCategory.Products.Add(tmpProduct);
+            tmpCategory.Products.Add(tmpProduct);//Null Reference Exception
             _dBContext.SaveChanges();
         }
 
@@ -238,6 +243,7 @@ namespace InternetShop.DAL
                                         Id = p.Id,
                                         Title = p.Title,
                                         Products = (from x in _dBContext.Products
+                                                    where p.CategoryId == x.Id
                                                     select new ProductDTO()
                                                     {
                                                         Description = x.Description,
