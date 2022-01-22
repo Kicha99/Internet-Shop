@@ -22,7 +22,9 @@ namespace InternetShop.DAL
             string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=aspnet-InternetShop.UI-E6895286-D0FA-4B5F-BA11-FCDDF259D9AC;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             //string connectionString = @"Data Source=TEL-AVIV;Initial Catalog=sandbox;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder
+                .UseLazyLoadingProxies()
+                .UseSqlServer(connectionString);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

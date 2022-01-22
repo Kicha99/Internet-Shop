@@ -78,6 +78,11 @@ namespace InternetShop.DAL
             //2) If we remove category, we need to change categories for products that contains old category(categories) 
             if (id <= 0)
                 throw new ArgumentException();
+            var products = from p in _dBContext.Categories
+                           where p.Id == id
+                           select p.Products;//?
+            
+
             //_dBContext.Categories.Remove();
             //_dBContext.Database.ExecuteSqlInterpolated($"DELETE Products FROM CATEGORIES WHERE ID={id}");
             //_dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE CategoryId={id}");

@@ -12,7 +12,7 @@ namespace InternetShop.DAL.Entities
         public string Title { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
-        public IEnumerable<Order> Orders { get; set; }
-        public Category Category { get; set; }
+        public virtual IEnumerable<Order> Orders { get; set; }
+        public virtual Category Category { get; set; }
     }
 }
