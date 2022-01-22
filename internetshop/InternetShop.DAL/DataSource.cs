@@ -178,21 +178,12 @@ namespace InternetShop.DAL
 
         public void EditOrder(OrderDTO order)
         {
-            //Order changedOrder = new Order()
-            //{
-            //    Id = order.Id,
-            //    ClientId = order.ClientId,
-            //    Products = from p in order.Products
-            //               select new Product()
-            //               {
-            //                    Id = p.Id,
-            //                    Description = p.Description,
-            //                    Price = p.Price,
-            //                    Title = p.Title
-            //               }
-            //}
-            //_dBContext.Orders.Update(changedOrder);
-            //_dBContext.SaveChanges();
+            var entityOrder = (from p in _dBContext.Orders
+                               where p.Id == order.Id
+                               select p).FirstOrDefault();
+            
+            throw new NotImplementedException("TODO: change product list with compare old and new list");
+            
         }
 
         public OrderDTO GetOrderById(int id)
