@@ -74,9 +74,20 @@ namespace InternetShop.DAL
             // TODO: What should we do with child categories?
             // Remove or Assign as root
             // TODO: Thinking about other cases while remove categories
+            //1) If we remove category, we need to remove all its child
+            //2) If we remove category, we need to change categories for products that contains old category(categories) 
             if (id <= 0)
                 throw new ArgumentException();
-            _dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE ID={id}");
+            var products = from p in _dBContext.Categories
+                           where p.Id == id
+                           select p.Products;//?
+            
+
+            //_dBContext.Categories.Remove();
+            //_dBContext.Database.ExecuteSqlInterpolated($"DELETE Products FROM CATEGORIES WHERE ID={id}");
+            //_dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE CategoryId={id}");
+            //_dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE ID={id}");
+
         }
 
         public IEnumerable<ProductDTO> GetProductsByCategoryId(int id)
@@ -213,6 +224,36 @@ namespace InternetShop.DAL
             var myOrder = (from p in _dBContext.Orders where p.Id == order.Id select p).FirstOrDefault();
             myOrder.Products.Add(prod);
             _dBContext.SaveChanges();
+        }
+
+        public void AddProductToCategory(CategoryDTO category, ProductDTO product)
+        {
+            var tmpCategory = (from c in _dBContext.Categories where c.Id == category.Id select c).FirstOrDefault();
+            var tmpProduct = (from p in _dBContext.Products where p.Id == product.Id select p).FirstOrDefault();
+            tmpCategory.Products.Add(tmpProduct);//Null Reference Exception
+            _dBContext.SaveChanges();
+        }
+
+        public CategoryDTO GetCategoryById(int id)
+        {
+            CategoryDTO category = (from p in _dBContext.Categories
+                                    where p.Id == id
+                                    select new CategoryDTO()
+                                    {
+                                        Id = p.Id,
+                                        Title = p.Title,
+                                        Products = (from x in _dBContext.Products
+                                                    where p.CategoryId == x.Id
+                                                    select new ProductDTO()
+                                                    {
+                                                        Description = x.Description,
+                                                        Id = x.Id,
+                                                        Price = x.Price,
+                                                        Title = x.Title
+                                                    }).ToList()
+                                        
+                                    }).FirstOrDefault();
+            return category;
         }
     }
 }
