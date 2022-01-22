@@ -85,11 +85,11 @@ namespace InternetShop.DAL
             
 
             var products = from p in _dBContext.Products
-                           where p.CategoryId == id
+                           where p.CategoryId.Value == id
                            select p;//?
             foreach (var item in products)
             {
-                item.CategoryId = 0;
+                item.CategoryId = null;
                 _dBContext.Products.Update(item);
             }
             _dBContext.SaveChanges();
