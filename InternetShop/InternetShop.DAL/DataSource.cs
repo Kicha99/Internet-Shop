@@ -82,12 +82,18 @@ namespace InternetShop.DAL
                            where p.Id == id
                            select p).FirstOrDefault();
             _dBContext.Categories.Remove(category);
+            
+
+            var products = from p in _dBContext.Products
+                           where p.CategoryId == id
+                           select p;//?
+            foreach (var item in products)
+            {
+                item.CategoryId = 0;
+                _dBContext.Products.Update(item);
+            }
             _dBContext.SaveChanges();
 
-            //var products = from p in _dBContext.Products
-            //               where p. == id
-            //               select p.Products;//?
-            
 
             //_dBContext.Categories.Remove();
             //_dBContext.Database.ExecuteSqlInterpolated($"DELETE Products FROM CATEGORIES WHERE ID={id}");

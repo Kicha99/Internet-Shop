@@ -15,7 +15,7 @@ namespace InternetShop.DAL.Entities
         public string Description { get; set; }
         public virtual IEnumerable<Order> Orders { get; set; }
         
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         [ForeignKey(nameof(CategoryId))]
         public virtual Category Category { get; set; }
     }

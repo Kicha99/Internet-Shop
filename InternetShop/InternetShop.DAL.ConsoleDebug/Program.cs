@@ -70,9 +70,10 @@ namespace InternetShop.DAL.ConsoleDebug
             //ProductDTO product1 = ds.GetProductById(10);
             //ds.AddProductToOrder(order, product1);
             //OrderDTO actualOrder = ds.GetOrderById(1);
-            var myP = ds.GetProductById(21);
-            var myC = ds.GetCategoryById(19);
-            ds.AddProductToCategory(myC, myP);
+            //var myP = ds.GetProductById(21);
+            //var myC = ds.GetCategoryById(19);
+            //ds.AddProductToCategory(myC, myP);
+            ds.RemoveCategoryById(19);
             
             
 
