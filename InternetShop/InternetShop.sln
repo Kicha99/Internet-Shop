@@ -5,15 +5,19 @@ VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop.UI", "InternetShop.UI\InternetShop.UI.csproj", "{B84C26BC-277C-4023-A607-7577CEAF54D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.BL.Interfaces", "InternetShop.BL.Interfaces\InternetShop.BL.Interfaces.csproj", "{15237E09-B49A-4AD2-9A0B-065C40F1E6EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop.BL.Interfaces", "InternetShop.BL.Interfaces\InternetShop.BL.Interfaces.csproj", "{15237E09-B49A-4AD2-9A0B-065C40F1E6EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.BL", "InternetShop.BL\InternetShop.BL.csproj", "{48410F9A-827D-4F7C-BDC9-AB1E49FED6BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop.BL", "InternetShop.BL\InternetShop.BL.csproj", "{48410F9A-827D-4F7C-BDC9-AB1E49FED6BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.DAL.Interfaces", "InternetShop.DAL.Interfaces\InternetShop.DAL.Interfaces.csproj", "{6772135B-47CC-4A74-8185-2AB126A4969E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop.DAL.Interfaces", "InternetShop.DAL.Interfaces\InternetShop.DAL.Interfaces.csproj", "{6772135B-47CC-4A74-8185-2AB126A4969E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.DAL", "InternetShop.DAL\InternetShop.DAL.csproj", "{2BE9D470-92FD-48F1-B1A6-4A7EFEECFD4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop.DAL", "InternetShop.DAL\InternetShop.DAL.csproj", "{2BE9D470-92FD-48F1-B1A6-4A7EFEECFD4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.CompositionRoot", "InternetShop.CompositionRoot\InternetShop.CompositionRoot.csproj", "{6B7EBB5C-8959-4E69-BCFC-41581081A021}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop.CompositionRoot", "InternetShop.CompositionRoot\InternetShop.CompositionRoot.csproj", "{6B7EBB5C-8959-4E69-BCFC-41581081A021}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{BC3A7FD6-BD33-4445-917E-B9C8A05D3D2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.DAL.ConsoleDebug", "InternetShop.DAL.ConsoleDebug\InternetShop.DAL.ConsoleDebug.csproj", "{652B85F7-2C3C-4DED-B927-9294367270AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +49,16 @@ Global
 		{6B7EBB5C-8959-4E69-BCFC-41581081A021}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B7EBB5C-8959-4E69-BCFC-41581081A021}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B7EBB5C-8959-4E69-BCFC-41581081A021}.Release|Any CPU.Build.0 = Release|Any CPU
+		{652B85F7-2C3C-4DED-B927-9294367270AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{652B85F7-2C3C-4DED-B927-9294367270AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{652B85F7-2C3C-4DED-B927-9294367270AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{652B85F7-2C3C-4DED-B927-9294367270AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{652B85F7-2C3C-4DED-B927-9294367270AB} = {BC3A7FD6-BD33-4445-917E-B9C8A05D3D2D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F0A96136-443F-4FA4-B245-612EE6C0CDAE}
