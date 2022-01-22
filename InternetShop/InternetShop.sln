@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop.CompositionRoo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{BC3A7FD6-BD33-4445-917E-B9C8A05D3D2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.DAL.ConsoleDebug", "InternetShop.DAL.ConsoleDebug\InternetShop.DAL.ConsoleDebug.csproj", "{652B85F7-2C3C-4DED-B927-9294367270AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop.DAL.ConsoleDebug", "InternetShop.DAL.ConsoleDebug\InternetShop.DAL.ConsoleDebug.csproj", "{652B85F7-2C3C-4DED-B927-9294367270AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.BL.ConsoleDebug", "InternetShop.BL.ConsoleDebug\InternetShop.BL.ConsoleDebug.csproj", "{97FF021A-7A92-4CA3-907F-2C26B0DFA092}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,12 +55,17 @@ Global
 		{652B85F7-2C3C-4DED-B927-9294367270AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{652B85F7-2C3C-4DED-B927-9294367270AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{652B85F7-2C3C-4DED-B927-9294367270AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97FF021A-7A92-4CA3-907F-2C26B0DFA092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97FF021A-7A92-4CA3-907F-2C26B0DFA092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97FF021A-7A92-4CA3-907F-2C26B0DFA092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97FF021A-7A92-4CA3-907F-2C26B0DFA092}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{652B85F7-2C3C-4DED-B927-9294367270AB} = {BC3A7FD6-BD33-4445-917E-B9C8A05D3D2D}
+		{97FF021A-7A92-4CA3-907F-2C26B0DFA092} = {BC3A7FD6-BD33-4445-917E-B9C8A05D3D2D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F0A96136-443F-4FA4-B245-612EE6C0CDAE}

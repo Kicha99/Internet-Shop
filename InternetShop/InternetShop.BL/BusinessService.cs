@@ -15,5 +15,11 @@ namespace InternetShop.BL
         {
             _ds = ds;
         }
+
+        public IEnumerable<ModelCategory> GetCategories()
+        {
+            var categories = _ds.GetTopCategories();
+            //map to Model Category
+        }
     }
 }

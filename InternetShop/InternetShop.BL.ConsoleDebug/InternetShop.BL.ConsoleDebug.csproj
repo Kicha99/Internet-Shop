@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InternetShop.BL.Interfaces\InternetShop.BL.Interfaces.csproj" />
+    <ProjectReference Include="..\InternetShop.BL\InternetShop.BL.csproj" />
+    <ProjectReference Include="..\InternetShop.DAL.Interfaces\InternetShop.DAL.Interfaces.csproj" />
+    <ProjectReference Include="..\InternetShop.DAL\InternetShop.DAL.csproj" />
+  </ItemGroup>
+
+</Project>

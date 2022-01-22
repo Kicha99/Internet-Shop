@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace InternetShop.BL.Interfaces
 {
-    public interface IBusinessService
+    public class ModelCategory
     {
-        IEnumerable<ModelCategory> GetCategories();
     }
 }
