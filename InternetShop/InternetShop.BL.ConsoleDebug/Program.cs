@@ -22,13 +22,15 @@ namespace InternetShop.BL.ConsoleDebug
             pr.Description = "123213";
             pr.Price = 120;
             pr.Title = "SSASSADA";
-            bl.AddProduct(pr);
-            var res = bl.GetProductById(pr.Id);
+            pr.Price = 2500;
+            bl.EditProduct(pr);
+            //bl.AddProduct(pr);
+            //var res = bl.GetProductById(pr.Id);
 
-            foreach (var item in child)
-            {
-                Console.WriteLine(item.Id);
-            }
+            //foreach (var item in child)
+            //{
+            //    Console.WriteLine(item.Id);
+            //}
 
             //foreach (var item in orders)
             //{

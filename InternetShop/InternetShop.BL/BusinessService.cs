@@ -29,6 +29,18 @@ namespace InternetShop.BL
             _ds.AddProduct(res);
         }
 
+        public void EditProduct(ModelProduct pr)
+        {
+            var newPr = new ProductDTO()
+            {
+                Id = pr.Id,
+                Description = pr.Description,
+                Price = pr.Price,
+                Title = pr.Title
+            };
+            _ds.EditProduct(newPr);
+        }
+
         public IEnumerable<ModelCategory> GetCategories()
         {
             var categories = _ds.GetTopCategories();
