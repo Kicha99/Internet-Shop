@@ -13,12 +13,18 @@ namespace InternetShop.BL.ConsoleDebug
             IBusinessService bl = new BusinessService(dal);
 
             IEnumerable<ModelCategory> mc = bl.GetCategories();
+            IEnumerable<ModelProduct> mp = bl.GetProductsByCategoryId(20);
 
-            foreach (ModelCategory item in mc)
+            foreach (var item in mp)
             {
-                Console.WriteLine(item.Id);
                 Console.WriteLine(item.Title);
             }
+
+            //foreach (ModelCategory item in mc)
+            //{
+            //    Console.WriteLine(item.Id);
+            //    Console.WriteLine(item.Title);
+            //}
 
             Console.ReadLine();
         }
