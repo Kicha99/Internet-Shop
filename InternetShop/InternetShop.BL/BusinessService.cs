@@ -39,6 +39,21 @@ namespace InternetShop.BL
             //map to Model Category
         }
 
+        public IEnumerable<ModelCategory> GetChildCategoriesById(int id)
+        {
+            var children = _ds.GetChildCategoriesById(id);
+
+            foreach (var item in children)
+            {
+                yield return new ModelCategory()
+                {
+                    Id = item.Id,
+                    Title = item.Title
+                };
+            }
+
+        }
+
         public IEnumerable<ModelOrder> GetOrders()
         {
             var orders = _ds.GetOrders();

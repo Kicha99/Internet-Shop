@@ -16,11 +16,17 @@ namespace InternetShop.BL.ConsoleDebug
             IEnumerable<ModelProduct> mp = bl.GetProductsByCategoryId(20);
             ModelProduct p = bl.GetProductById(20);
             IEnumerable<ModelOrder> orders = bl.GetOrders();
+            IEnumerable<ModelCategory> child = bl.GetChildCategoriesById(27);
 
-            foreach (var item in orders)
+            foreach (var item in child)
             {
                 Console.WriteLine(item.Id);
             }
+
+            //foreach (var item in orders)
+            //{
+            //    Console.WriteLine(item.Id);
+            //}
             //Console.WriteLine(p.Title);
 
             //foreach (var item in mp)
