@@ -18,6 +18,7 @@ namespace InternetShop.BL.ConsoleDebug
             IEnumerable<ModelOrder> orders = bl.GetOrders();
             IEnumerable<ModelCategory> child = bl.GetChildCategoriesById(27);
 
+
             foreach (var item in child)
             {
                 Console.WriteLine(item.Id);
