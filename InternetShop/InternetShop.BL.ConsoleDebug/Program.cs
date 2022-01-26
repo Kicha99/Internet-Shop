@@ -14,11 +14,14 @@ namespace InternetShop.BL.ConsoleDebug
 
             IEnumerable<ModelCategory> mc = bl.GetCategories();
             IEnumerable<ModelProduct> mp = bl.GetProductsByCategoryId(20);
+            ModelProduct p = bl.GetProductById(20);
 
-            foreach (var item in mp)
-            {
-                Console.WriteLine(item.Title);
-            }
+            Console.WriteLine(p.Title);
+
+            //foreach (var item in mp)
+            //{
+            //    Console.WriteLine(item.Title);
+            //}
 
             //foreach (ModelCategory item in mc)
             //{

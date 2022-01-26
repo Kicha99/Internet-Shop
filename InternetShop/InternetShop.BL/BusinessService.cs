@@ -39,6 +39,19 @@ namespace InternetShop.BL
             //map to Model Category
         }
 
+        public ModelProduct GetProductById(int id)
+        {
+            var p = _ds.GetProductById(id);
+
+            return new ModelProduct()
+            {
+                Id = p.Id,
+                Price = p.Price,
+                Description = p.Description,
+                Title = p.Title
+            };
+        }
+
         public IEnumerable<ModelProduct> GetProductsByCategoryId(int id)
         {
             var products = _ds.GetProductsByCategoryId(id);
