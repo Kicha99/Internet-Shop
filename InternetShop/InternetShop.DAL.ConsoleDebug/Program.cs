@@ -58,7 +58,7 @@ namespace InternetShop.DAL.ConsoleDebug
             //1. Remove Order and Edit Order?
 
             //Get top categories
-            //var root = ds.GetTopCategories();
+            var root = ds.GetTopCategories();
 
             //var order = ds.GetOrders();
             //var child = ds.GetChildCategoriesById(16);
@@ -75,14 +75,14 @@ namespace InternetShop.DAL.ConsoleDebug
             //ds.AddProductToCategory(myC, myP);
             //ds.RemoveCategoryById(19);
 
-            var newOr = ds.GetOrderById(1);
-            var oldPr = ds.GetProductById(4);
-            var newPr = ds.GetProductById(25);
-            newOr.Products.Remove(oldPr);
-            newOr.Products.Add(newPr);
+            //var newOr = ds.GetOrderById(1);
+            //var oldPr = ds.GetProductById(4);
+            //var newPr = ds.GetProductById(25);
+            //newOr.Products.Remove(oldPr);
+            //newOr.Products.Add(newPr);
             
 
-            ds.EditOrder(newOr);
+            //ds.EditOrder(newOr);
             
 
         }
