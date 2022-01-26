@@ -17,7 +17,13 @@ namespace InternetShop.BL.ConsoleDebug
             ModelProduct p = bl.GetProductById(20);
             IEnumerable<ModelOrder> orders = bl.GetOrders();
             IEnumerable<ModelCategory> child = bl.GetChildCategoriesById(27);
-
+            ModelProduct pr = new ModelProduct();
+            pr.Id = 25;
+            pr.Description = "123213";
+            pr.Price = 120;
+            pr.Title = "SSASSADA";
+            bl.AddProduct(pr);
+            var res = bl.GetProductById(pr.Id);
 
             foreach (var item in child)
             {

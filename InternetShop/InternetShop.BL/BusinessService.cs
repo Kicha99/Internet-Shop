@@ -1,5 +1,6 @@
 ﻿using InternetShop.BL.Interfaces;
 using InternetShop.DAL.Interfaces;
+using InternetShop.DAL.Interfaces.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,18 @@ namespace InternetShop.BL
         public BusinessService(IDataSource ds)
         {
             _ds = ds;
+        }
+
+        public void AddProduct(ModelProduct pr)
+        {
+            var res = new ProductDTO()
+            {
+                Id = pr.Id,
+                Description = pr.Description,
+                Title = pr.Title,
+                Price = pr.Price
+            };
+            _ds.AddProduct(res);//?
         }
 
         public IEnumerable<ModelCategory> GetCategories()

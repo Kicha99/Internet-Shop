@@ -23,6 +23,7 @@ namespace InternetShop.DAL
                 Title = product.Title,
                 Price = product.Price,
                 Description = product.Description
+                
             };
             _dBContext.Products.Add(newProduct);
             _dBContext.SaveChanges();

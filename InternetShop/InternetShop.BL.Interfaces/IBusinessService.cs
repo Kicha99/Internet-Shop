@@ -13,5 +13,6 @@ namespace InternetShop.BL.Interfaces
         ModelProduct GetProductById(int id);
         IEnumerable<ModelOrder> GetOrders();
         IEnumerable<ModelCategory> GetChildCategoriesById(int id);
+        void AddProduct(ModelProduct pr);
     }
 }
