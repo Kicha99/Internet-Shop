@@ -12,5 +12,14 @@ namespace InternetShop.DAL.Interfaces.DTO
         public string Title { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
+        public override int GetHashCode()
+        {
+            return Id;
+        }
+        public override bool Equals(object obj)
+        {
+            ProductDTO o = (ProductDTO)obj;
+            return o.Id == Id;
+        }
     }
 }

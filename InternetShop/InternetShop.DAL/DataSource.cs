@@ -179,11 +179,51 @@ namespace InternetShop.DAL
 
         public void EditOrder(OrderDTO order)
         {
-            var entityOrder = (from p in _dBContext.Orders
+            var entityOrder= (from p in _dBContext.Orders
                                where p.Id == order.Id
                                select p).FirstOrDefault();
+            var deletedEntities = new List<Product>();
+ 
             
-            throw new NotImplementedException("TODO: change product list with compare old and new list");
+            var DTOproducts = order.Products;
+
+            foreach (var p in entityOrder.Products)
+            {
+                var IsExists = (from x in DTOproducts
+                               where x.Id == p.Id
+                               select x).Count();
+                if(IsExists == 0)
+                {   //delete from db
+                    deletedEntities.Add(p);
+                }              
+            }
+            foreach (var item in DTOproducts)
+            {
+                var IsExists = (from p in entityOrder.Products
+                                where p.Id == item.Id
+                                select p).Count();
+                if (IsExists == 0)
+                {
+                    Product product = new Product()
+                    {
+                        Id = item.Id,
+                        Description = item.Description,
+                        Price = item.Price,
+                        Title = item.Title
+                    };
+
+                    entityOrder.Products.Add(product);
+                }
+            }
+            foreach (var item in deletedEntities)
+            {
+                entityOrder.Products.Remove(item);
+            }
+            _dBContext.Orders.Update(entityOrder);
+            _dBContext.SaveChanges();
+             
+            
+            //throw new NotImplementedException("TODO: change product list with compare old and new list");
             
         }
 

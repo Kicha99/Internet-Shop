@@ -73,8 +73,16 @@ namespace InternetShop.DAL.ConsoleDebug
             //var myP = ds.GetProductById(21);
             //var myC = ds.GetCategoryById(19);
             //ds.AddProductToCategory(myC, myP);
-            ds.RemoveCategoryById(19);
+            //ds.RemoveCategoryById(19);
+
+            var newOr = ds.GetOrderById(1);
+            var oldPr = ds.GetProductById(4);
+            var newPr = ds.GetProductById(25);
+            newOr.Products.Remove(oldPr);
+            newOr.Products.Add(newPr);
             
+
+            ds.EditOrder(newOr);
             
 
         }
