@@ -39,6 +39,29 @@ namespace InternetShop.BL
             //map to Model Category
         }
 
+        public IEnumerable<ModelOrder> GetOrders()
+        {
+            var orders = _ds.GetOrders();
+
+            foreach (var item in orders)
+            {
+                yield return new ModelOrder()
+                {
+                    Id = item.Id,
+                    ClientId = item.ClientId,
+                    Products = (from p in item.Products
+                                where p != null
+                                select new ModelProduct()
+                                {
+                                    Id = p.Id,
+                                    Description = p.Description,
+                                    Price = p.Price,
+                                    Title = p.Title
+                                }).ToList()
+                };
+            }
+        }
+
         public ModelProduct GetProductById(int id)
         {
             var p = _ds.GetProductById(id);
