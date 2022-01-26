@@ -124,8 +124,18 @@ namespace InternetShop.DAL
                                                   select new CategoryDTO()
                                                   {
                                                       Id = p.Id,
-                                                      Title = p.Title
+                                                      Title = p.Title,
+                                                      Products = (from x in p.Products
+                                                                  select new ProductDTO()
+                                                                  {
+                                                                      Id = x.Id,
+                                                                      Description = x.Description,
+                                                                      Price = x.Price,
+                                                                      Title = x.Title
+                                                                  }).ToList()
+                                                      
                                                   };
+            
             return categories.ToList();
         }
 
