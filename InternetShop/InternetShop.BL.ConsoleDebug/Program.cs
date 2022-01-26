@@ -43,11 +43,11 @@ namespace InternetShop.BL.ConsoleDebug
             //    Console.WriteLine(item.Title);
             //}
 
-            foreach (ModelCategory item in mc)
-            {
-                Console.WriteLine(item.Id);
-                Console.WriteLine(item.Title);
-            }
+            //foreach (ModelCategory item in mc)
+            //{
+            //    Console.WriteLine(item.Id);
+            //    Console.WriteLine(item.Title);
+            //}
 
             Console.ReadLine();
         }
