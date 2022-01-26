@@ -26,7 +26,7 @@ namespace InternetShop.BL
                 Title = pr.Title,
                 Price = pr.Price
             };
-            _ds.AddProduct(res);//?
+            _ds.AddProduct(res);
         }
 
         public IEnumerable<ModelCategory> GetCategories()
