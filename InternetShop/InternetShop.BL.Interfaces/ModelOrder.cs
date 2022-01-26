@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace InternetShop.BL.Interfaces
 {
-    public class ModelCategory
+    public class ModelOrder
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public IEnumerable<ModelCategory> Child { get; set; }
+        public int ClientId { get; set; }
         public IList<ModelProduct> Products { get; set; }
     }
 }

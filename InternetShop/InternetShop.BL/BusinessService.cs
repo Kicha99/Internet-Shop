@@ -19,6 +19,23 @@ namespace InternetShop.BL
         public IEnumerable<ModelCategory> GetCategories()
         {
             var categories = _ds.GetTopCategories();
+            foreach (var item in categories)
+            {
+                yield return new ModelCategory()
+                {
+                    Id = item.Id,
+                    Title = item.Title,
+                    //Products = (from p in item.Products
+                    //            where p != null
+                    //            select new ModelProduct()
+                    //            {
+                    //                Id = p.Id,
+                    //                Description = p.Description,
+                    //                Price = p.Price,
+                    //                Title = p.Title
+                    //            }).ToList() //Null Reference Exception
+                }; ;
+            }
             //map to Model Category
         }
     }
