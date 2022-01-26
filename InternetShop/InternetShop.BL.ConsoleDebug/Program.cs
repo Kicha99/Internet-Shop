@@ -23,7 +23,7 @@ namespace InternetShop.BL.ConsoleDebug
             pr.Price = 120;
             pr.Title = "SSASSADA";
             pr.Price = 2500;
-            bl.EditProduct(pr);
+            //bl.EditProduct(pr);
             //bl.AddProduct(pr);
             //var res = bl.GetProductById(pr.Id);
 
@@ -43,11 +43,11 @@ namespace InternetShop.BL.ConsoleDebug
             //    Console.WriteLine(item.Title);
             //}
 
-            //foreach (ModelCategory item in mc)
-            //{
-            //    Console.WriteLine(item.Id);
-            //    Console.WriteLine(item.Title);
-            //}
+            foreach (ModelCategory item in mc)
+            {
+                Console.WriteLine(item.Id);
+                Console.WriteLine(item.Title);
+            }
 
             Console.ReadLine();
         }

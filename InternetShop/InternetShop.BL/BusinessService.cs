@@ -50,16 +50,16 @@ namespace InternetShop.BL
                 {
                     Id = item.Id,
                     Title = item.Title,
-                    //Products = (from p in item.Products
-                    //            where p != null
-                    //            select new ModelProduct()
-                    //            {
-                    //                Id = p.Id,
-                    //                Description = p.Description,
-                    //                Price = p.Price,
-                    //                Title = p.Title
-                    //            }).ToList() //Null Reference Exception
-                }; ;
+                    Products = (from p in item.Products
+                                where p != null
+                                select new ModelProduct()
+                                {
+                                    Id = p.Id,
+                                    Description = p.Description,
+                                    Price = p.Price,
+                                    Title = p.Title
+                                }).ToList() //Null Reference Exception
+                };
             }
             //map to Model Category
         }
