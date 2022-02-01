@@ -23,7 +23,8 @@ namespace InternetShop.UI.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var categories = _businessService.GetCategories();
+            return View(categories);
         }
 
         public IActionResult Privacy()
@@ -35,6 +36,10 @@ namespace InternetShop.UI.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public IActionResult Subcategory(int id)
+        {
+            return View(); //TODO
         }
     }
 }

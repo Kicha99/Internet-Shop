@@ -2,7 +2,16 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+@model IEnumerable<InternetShop.BL.Interfaces.ModelCategory>
+
+<h1>The large internet shop</h1>
+
+@{ 
+    foreach (var item in Model)
+    {
+        <p>
+           <a href="/Home/Subcategory/@item.Id"> @item.Title</a>
+        </p>
+    }
+}
