@@ -17,6 +17,7 @@ namespace InternetShop.BL.ConsoleDebug
             ModelProduct p = bl.GetProductById(20);
             IEnumerable<ModelOrder> orders = bl.GetOrders();
             IEnumerable<ModelCategory> child = bl.GetChildCategoriesById(27);
+            ModelOrder order = bl.GetOrderById(1);
             ModelProduct pr = new ModelProduct();
             pr.Id = 25;
             pr.Description = "123213";
