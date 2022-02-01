@@ -12,27 +12,24 @@ namespace InternetShop.BL.ConsoleDebug
             var dal = new DataSource();
             IBusinessService bl = new BusinessService(dal);
 
-            IEnumerable<ModelCategory> mc = bl.GetCategories();
-            IEnumerable<ModelProduct> mp = bl.GetProductsByCategoryId(20);
-            ModelProduct p = bl.GetProductById(20);
-            IEnumerable<ModelOrder> orders = bl.GetOrders();
-            IEnumerable<ModelCategory> child = bl.GetChildCategoriesById(27);
-            ModelOrder order = bl.GetOrderById(1);
-            var product = new ModelProduct()
-            {
-                Id = 40,
-                Description = "NewProduct",
-                Price = 1,
-                Title = "Good"
-            };
-            bl.AddProduct(product);
-            bl.AddProductInOrder(product, order);
-            ModelProduct pr = new ModelProduct();
-            pr.Id = 25;
-            pr.Description = "123213";
-            pr.Price = 120;
-            pr.Title = "SSASSADA";
-            pr.Price = 2500;
+            //IEnumerable<ModelCategory> mc = bl.GetCategories();
+            var p = bl.GetProductById(6);
+            p.Price = 12343;
+            //bl.EditProduct(p); //Меняет значение CategoryId на null
+            IEnumerable<ModelProduct> mp = bl.GetProductsByCategoryId(16);
+            //ModelProduct p = bl.GetProductById(26);
+            //IEnumerable<ModelOrder> orders = bl.GetOrders();
+            //IEnumerable<ModelCategory> child = bl.GetChildCategoriesById(27);
+            IEnumerable<ModelProduct> sortProductsByPrice = bl.SortProductsByPriceAscending(mp);
+            //ModelOrder order = bl.GetOrderById(1);
+            
+            //bl.AddProductInOrder(p, order);
+            //ModelProduct pr = new ModelProduct();
+            //pr.Id = 25;
+            //pr.Description = "123213";
+            //pr.Price = 120;
+            //pr.Title = "SSASSADA";
+            //pr.Price = 2500;
             //bl.EditProduct(pr);
             //bl.AddProduct(pr);
             //var res = bl.GetProductById(pr.Id);

@@ -176,5 +176,13 @@ namespace InternetShop.BL
                 };
             }
         }
+
+        public IEnumerable<ModelProduct> SortProductsByPriceAscending(IEnumerable<ModelProduct> mp)
+        {
+            var sorted = from p in mp
+                         orderby p.Price
+                         select p;
+            return sorted;
+        }
     }
 }
