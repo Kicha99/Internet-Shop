@@ -18,6 +18,15 @@ namespace InternetShop.BL.ConsoleDebug
             IEnumerable<ModelOrder> orders = bl.GetOrders();
             IEnumerable<ModelCategory> child = bl.GetChildCategoriesById(27);
             ModelOrder order = bl.GetOrderById(1);
+            var product = new ModelProduct()
+            {
+                Id = 40,
+                Description = "NewProduct",
+                Price = 1,
+                Title = "Good"
+            };
+            bl.AddProduct(product);
+            bl.AddProductInOrder(product, order);
             ModelProduct pr = new ModelProduct();
             pr.Id = 25;
             pr.Description = "123213";

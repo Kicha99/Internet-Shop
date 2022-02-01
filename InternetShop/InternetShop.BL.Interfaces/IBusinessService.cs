@@ -16,5 +16,6 @@ namespace InternetShop.BL.Interfaces
         void AddProduct(ModelProduct pr);
         void EditProduct(ModelProduct pr);
         ModelOrder GetOrderById(int orderId);
+        void AddProductInOrder(ModelProduct product, ModelOrder order);
     }
 }

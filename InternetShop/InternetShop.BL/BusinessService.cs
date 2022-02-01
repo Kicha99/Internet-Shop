@@ -29,6 +29,32 @@ namespace InternetShop.BL
             _ds.AddProduct(res);
         }
 
+        public void AddProductInOrder(ModelProduct product, ModelOrder order)
+        {
+            ProductDTO productDTO = new ProductDTO()
+            {
+                Id = product.Id,
+                Description = product.Description,
+                Price = product.Price,
+                Title = product.Title
+            };
+            OrderDTO orderDTO = new OrderDTO()
+            {
+                ClientId = order.ClientId,
+                Id = order.Id,
+                Products = (from p in order.Products
+                            select new ProductDTO()
+                            {
+                                Id = p.Id,
+                                Description = p.Description,
+                                Price = p.Price,
+                                Title = p.Title
+                            }).ToList()
+            };
+
+            _ds.AddProductToOrder(orderDTO, productDTO);
+        }
+
         public void EditProduct(ModelProduct pr)
         {
             var newPr = new ProductDTO()
