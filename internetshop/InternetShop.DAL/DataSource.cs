@@ -31,7 +31,7 @@ namespace InternetShop.DAL
         }
         public void EditProduct(ProductDTO product)
         {
-            //?
+            //Ставит CategoryId в null
             Product editP = new Product()
             {
                 Description = product.Description,
