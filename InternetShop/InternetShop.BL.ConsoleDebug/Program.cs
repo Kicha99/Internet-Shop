@@ -13,9 +13,9 @@ namespace InternetShop.BL.ConsoleDebug
             IBusinessService bl = new BusinessService(dal);
 
             //IEnumerable<ModelCategory> mc = bl.GetCategories();
-            var p = bl.GetProductById(6);
+            var p = bl.GetProductById(4);
             p.Price = 12343;
-            //bl.EditProduct(p); //Меняет значение CategoryId на null
+            bl.EditProduct(p); 
             IEnumerable<ModelProduct> mp = bl.GetProductsByCategoryId(16);
             //ModelProduct p = bl.GetProductById(26);
             //IEnumerable<ModelOrder> orders = bl.GetOrders();

@@ -62,7 +62,8 @@ namespace InternetShop.BL
                 Id = pr.Id,
                 Description = pr.Description,
                 Price = pr.Price,
-                Title = pr.Title
+                Title = pr.Title,
+                CategoryId = pr.CategoryId
             };
             _ds.EditProduct(newPr);
         }
@@ -156,6 +157,7 @@ namespace InternetShop.BL
             return new ModelProduct()
             {
                 Id = p.Id,
+                CategoryId = p.CategoryId,
                 Price = p.Price,
                 Description = p.Description,
                 Title = p.Title
