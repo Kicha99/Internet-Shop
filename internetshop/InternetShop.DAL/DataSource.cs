@@ -31,13 +31,14 @@ namespace InternetShop.DAL
         }
         public void EditProduct(ProductDTO product)
         {
-            //Ставит CategoryId в null
+            //Ставит CategoryId в null +
             Product editP = new Product()
             {
                 Description = product.Description,
                 Price = product.Price,
                 Title = product.Title,
-                Id = product.Id
+                Id = product.Id,
+                CategoryId = product.CategoryId
             };
             _dBContext.Products.Update(editP);
             _dBContext.SaveChanges();
@@ -267,7 +268,8 @@ namespace InternetShop.DAL
                                       Description = p.Description,
                                       Id = p.Id,
                                       Price = p.Price,
-                                      Title = p.Title
+                                      Title = p.Title,
+                                      CategoryId = p.CategoryId
                                   }).FirstOrDefault();
             return product;
         }
