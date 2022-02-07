@@ -39,7 +39,8 @@ namespace InternetShop.UI.Controllers
         }
         public IActionResult Subcategory(int id)
         {
-            return View(); //TODO
+            var subcategories = _businessService.GetChildCategoriesById(id);
+            return View(subcategories); //TODO
         }
     }
 }

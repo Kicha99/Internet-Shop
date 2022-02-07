@@ -1,0 +1,13 @@
+﻿@model IEnumerable<InternetShop.BL.Interfaces.ModelCategory>
+
+@{
+    foreach (var item in Model)
+    {
+    <h3>@item.Title</h3>
+        foreach (var subcategory in item.Child)
+        {
+            @subcategory.Title <a href="/Home/Subcategory/@subcategory.Id">Subcategory </a>
+            <a href="/Home/ProductList/@subcategory.Id"> Products for this category</a>
+        }
+    }
+}

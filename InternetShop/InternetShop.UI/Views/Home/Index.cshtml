@@ -7,11 +7,15 @@
 
 <h1>The large internet shop</h1>
 
-@{ 
+@{
     foreach (var item in Model)
     {
-        <p>
-           <a href="/Home/Subcategory/@item.Id"> @item.Title</a>
-        </p>
+        <h2>@item.Id</h2>
+        if (item.Child == null)
+            continue;
+        foreach (var subcategory in item.Child)
+        {
+            <a href="/Home/Subcategory/@subcategory.Id">@subcategory.Title</a>
+        }
     }
 }
