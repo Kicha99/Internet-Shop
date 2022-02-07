@@ -18,5 +18,7 @@ namespace InternetShop.DAL.Entities
         [ForeignKey(nameof(CategoryId))]
         public virtual  IEnumerable<Category> Child { get; set; }
         public virtual IList<Product> Products { get; set; }
+
+        public int? ChildId { get; set; }
     }
 }

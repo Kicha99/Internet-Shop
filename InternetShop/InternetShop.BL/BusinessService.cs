@@ -85,7 +85,13 @@ namespace InternetShop.BL
                                     Description = p.Description,
                                     Price = p.Price,
                                     Title = p.Title
-                                }).ToList() //Null Reference Exception
+                                }).ToList(),
+                    Child = (from p in item.Child 
+                             select new ModelCategory()
+                             {
+                                 Title = p.Title,
+                                 Id = p.Id
+                             })
                 };
             }
             //map to Model Category

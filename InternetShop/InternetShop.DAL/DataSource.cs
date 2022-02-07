@@ -137,12 +137,13 @@ namespace InternetShop.DAL
                                                                       Price = x.Price,
                                                                       Title = x.Title
                                                                   }).ToList(),
-                                                     Child = (from c in p.Child where p.CategoryId == c.Id
+                                                     Child = (from c in p.Child where p.ChildId == c.Id
                                                               select new CategoryDTO()
                                                               {
                                                                   Title = c.Title,
-                                                                  Id = c.Id
-                                                              })
+                                                                  Id = c.Id                                                                  
+                                                              }),                                                 
+
                                                   };
             
             return categories.ToList();
