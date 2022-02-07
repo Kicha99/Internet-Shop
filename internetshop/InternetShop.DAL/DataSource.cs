@@ -120,8 +120,11 @@ namespace InternetShop.DAL
 
         public IEnumerable<CategoryDTO> GetTopCategories()
         {
-            IEnumerable<CategoryDTO> categories = from p in _dBContext.Categories
-                                                  where !p.CategoryId.HasValue 
+            int rootID = (from p in _dBContext.Categories
+                          where p.Title == "ROOT"
+                          select p.Id).FirstOrDefault();
+            IEnumerable < CategoryDTO > categories = from p in _dBContext.Categories
+                                                     where p.CategoryId == rootID
                                                   select new CategoryDTO()
                                                   {
                                                       Id = p.Id,
@@ -133,8 +136,13 @@ namespace InternetShop.DAL
                                                                       Description = x.Description,
                                                                       Price = x.Price,
                                                                       Title = x.Title
-                                                                  }).ToList()
-                                                      
+                                                                  }).ToList(),
+                                                     Child = (from c in p.Child where p.CategoryId == c.Id
+                                                              select new CategoryDTO()
+                                                              {
+                                                                  Title = c.Title,
+                                                                  Id = c.Id
+                                                              })
                                                   };
             
             return categories.ToList();
