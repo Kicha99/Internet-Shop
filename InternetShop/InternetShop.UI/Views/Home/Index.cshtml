@@ -10,12 +10,12 @@
 @{
     foreach (var item in Model)
     {
-        <h2>@item.Id</h2>
+        <h2>@item.Title</h2>
         if (item.Child == null)
             continue;
         foreach (var subcategory in item.Child)
         {
-            <a href="/Home/Subcategory/@subcategory.Id">@subcategory.Title</a>
+            <a href="/Home/Subcategory/@subcategory.ChildId">@subcategory.Title</a>
         }
     }
 }
