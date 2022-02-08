@@ -49,6 +49,7 @@ namespace InternetShop.DAL
             Category newCategory = new Category()
             {
                 Title = category.Title,
+                
             };
             _dBContext.Categories.Add(newCategory);
             _dBContext.SaveChanges();
@@ -137,12 +138,13 @@ namespace InternetShop.DAL
                                                                       Price = x.Price,
                                                                       Title = x.Title
                                                                   }).ToList(),
-                                                     Child = (from c in p.Child where p.ChildId == c.Id
+                                                     Child = (from c in _dBContext.Categories where p.ChildId == c.CategoryId
                                                               select new CategoryDTO()
                                                               {
                                                                   Title = c.Title,
-                                                                  Id = c.Id                                                                  
-                                                              }),                                                 
+                                                                  Id = c.Id,
+                                                                  ChildId = c.ChildId
+                                                              }).ToList(),                                                 
 
                                                   };
             
@@ -191,7 +193,8 @@ namespace InternetShop.DAL
             {
                 CategoryId = category.Id,
                 Id = category.Id,
-                Title = category.Title
+                Title = category.Title,
+                ChildId = category.ChildId
             };
             _dBContext.Categories.Update(changedCategory);
             _dBContext.SaveChanges();
