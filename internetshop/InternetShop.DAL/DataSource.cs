@@ -153,12 +153,18 @@ namespace InternetShop.DAL
 
         public IEnumerable<CategoryDTO> GetChildCategoriesById(int id)
         {
+            var currentCategory = (from c in _dBContext.Categories
+                             where c.Id == id
+                             select c ).FirstOrDefault();
+            if (!currentCategory.ChildId.HasValue)
+                return new List<CategoryDTO>();
+
             IEnumerable<CategoryDTO> child = from p in _dBContext.Categories
                                              where p.CategoryId == id
                                              select new CategoryDTO()
                                              {
                                                  Id = p.Id,
-                                                 Title = p.Title
+                                                 Title = p.Title//child=
                                              };
             return child.ToList();
         }
