@@ -99,20 +99,26 @@ namespace InternetShop.BL
             //map to Model Category
         }
 
-        public IEnumerable<ModelCategory> GetCategoryById(int id)
+        public ModelCategory GetCategoryById(int id)
         {
             var children = _ds.GetChildCategoriesById(id);
+            var category = _ds.GetCategoryById(id);
 
-            foreach (var item in children)
-            {
-                yield return new ModelCategory()
+                 return new ModelCategory()
                 {
-                    Id = item.Id,
-                    Title = item.Title,
-
+                    Id = category.Id,
+                    Title = category.Title,
+                    Products = (from p in category.Products
+                                select new ModelProduct() 
+                                { 
+                                    Id = p.Id,
+                                    CategoryId = p.CategoryId,
+                                    Description = p.Description,
+                                    Price = p.Price,
+                                    Title = p.Title
+                                }).ToList()
+                    //child=
                 };
-            }
-
         }
 
         public ModelOrder GetOrderById(int orderId)

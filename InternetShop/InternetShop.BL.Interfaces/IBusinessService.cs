@@ -12,7 +12,7 @@ namespace InternetShop.BL.Interfaces
         IEnumerable<ModelProduct> GetProductsByCategoryId(int id);
         ModelProduct GetProductById(int id);
         IEnumerable<ModelOrder> GetOrders();
-        IEnumerable<ModelCategory> GetCategoryById(int id);
+        ModelCategory GetCategoryById(int id);
         void AddProduct(ModelProduct pr);
         void EditProduct(ModelProduct pr);
         ModelOrder GetOrderById(int orderId);
