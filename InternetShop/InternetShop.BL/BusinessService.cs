@@ -90,7 +90,9 @@ namespace InternetShop.BL
                              select new ModelCategory()
                              {
                                  Title = p.Title,
-                                 Id = p.Id
+                                 Id = p.Id,
+                                 ChildId = p.ChildId
+                                 
                              })
                 };
             }
