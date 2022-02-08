@@ -323,9 +323,10 @@ namespace InternetShop.DAL
                                                         Description = x.Description,
                                                         Id = x.Id,
                                                         Price = x.Price,
-                                                        Title = x.Title
+                                                        Title = x.Title 
                                                     }).ToList()
-                                        
+                                        //child=
+
                                     }).FirstOrDefault();
             return category;
         }
