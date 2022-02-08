@@ -99,7 +99,7 @@ namespace InternetShop.BL
             //map to Model Category
         }
 
-        public IEnumerable<ModelCategory> GetChildCategoriesById(int id)
+        public IEnumerable<ModelCategory> GetCategoryById(int id)
         {
             var children = _ds.GetChildCategoriesById(id);
 
