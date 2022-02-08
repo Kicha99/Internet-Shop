@@ -108,7 +108,8 @@ namespace InternetShop.BL
                 yield return new ModelCategory()
                 {
                     Id = item.Id,
-                    Title = item.Title
+                    Title = item.Title,
+
                 };
             }
 
