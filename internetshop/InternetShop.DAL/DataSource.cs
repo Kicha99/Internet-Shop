@@ -123,7 +123,7 @@ namespace InternetShop.DAL
         {
             int rootID = (from p in _dBContext.Categories
                           where p.Title == "ROOT"
-                          select p.Id).FirstOrDefault();
+                          select p.ChildId.Value).FirstOrDefault();
             IEnumerable < CategoryDTO > categories = from p in _dBContext.Categories
                                                      where p.CategoryId == rootID
                                                   select new CategoryDTO()
