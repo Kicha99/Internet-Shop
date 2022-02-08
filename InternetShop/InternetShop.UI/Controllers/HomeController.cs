@@ -42,5 +42,11 @@ namespace InternetShop.UI.Controllers
             var category = _businessService.GetCategoryById(id);
             return View(category); //TODO
         }
+
+        public IActionResult Product(int id)
+        {
+            var product = _businessService.GetProductById(id);
+            return View(product);
+        }
     }
 }
