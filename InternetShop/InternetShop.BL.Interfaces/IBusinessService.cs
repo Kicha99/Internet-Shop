@@ -16,6 +16,7 @@ namespace InternetShop.BL.Interfaces
         void AddProduct(ModelProduct pr);
         void EditProduct(ModelProduct pr);
         ModelOrder GetOrderById(int orderId);
+        ModelOrder GetOrderByUserId(Guid userId);
         void AddProductInOrder(ModelProduct product, ModelOrder order);
         IEnumerable<ModelProduct> SortProductsByPriceAscending(IEnumerable<ModelProduct> mp);
     }

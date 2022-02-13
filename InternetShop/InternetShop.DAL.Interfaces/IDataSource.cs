@@ -22,7 +22,7 @@ namespace InternetShop.DAL.Interfaces
         void AddOrder(OrderDTO order);//Create Order
         OrderDTO GetOrderById(int id);//Read Order
         IEnumerable<OrderDTO> GetOrders();//Read orders
-        IEnumerable<OrderDTO> GetOrdersByClient(int id);//Read OrdersByClientId
+        OrderDTO GetOrderByClient(Guid id);//Read OrdersByClientId
         void EditOrder(OrderDTO order);//Update Order
 
         void AddProductToOrder(OrderDTO order, ProductDTO product);

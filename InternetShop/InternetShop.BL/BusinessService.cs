@@ -149,6 +149,26 @@ namespace InternetShop.BL
             return newOrder;
         }
 
+        public ModelOrder GetOrderByUserId(Guid userId)
+        {
+            var order = _ds.GetOrderByClient(userId);
+
+            return new ModelOrder()
+            {
+                Id = order.Id,
+                UserId = order.UserId,
+                Products = (from p in order.Products
+                            select new ModelProduct()
+                            {
+                                Id = p.Id,
+                                CategoryId = p.CategoryId,
+                                Description = p.Description,
+                                Price = p.Price,
+                                Title = p.Title
+                            }).ToList()
+            };
+        }
+
         public IEnumerable<ModelOrder> GetOrders()
         {
             var orders = _ds.GetOrders();
