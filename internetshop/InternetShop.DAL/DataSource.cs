@@ -198,9 +198,37 @@ namespace InternetShop.DAL
             return orders.ToList();
         }
 
-        public IEnumerable<OrderDTO> GetOrdersByClient(int id)
+        public OrderDTO GetOrderByClient(Guid id)
         {
-            throw new NotImplementedException();
+            var order = (from p in _dBContext.Orders
+                         where p.UserId == id
+                         select p).FirstOrDefault();
+            if (order != null)
+            {
+                return new OrderDTO()
+                {
+                    Id = order.Id,
+                    Products = (from p in order.Products
+                                select new ProductDTO()
+                                {
+                                    Id = p.Id,
+                                    CategoryId = p.CategoryId,
+                                    Description = p.Description,
+                                    Price = p.Price,
+                                    Title = p.Title
+                                }).ToList(),
+                    UserId = order.UserId
+                };
+            }
+            else
+            {
+                var newOrder = new Order() { UserId = id };
+                _dBContext.Orders.Add(newOrder);
+                _dBContext.SaveChanges();
+                return new OrderDTO() { UserId = newOrder.UserId };
+            }
+            
+            
         }
 
         public void EditCategory(CategoryDTO category)
