@@ -31,7 +31,11 @@ namespace InternetShop.UI.Controllers
         }
         public IActionResult AddProduct(int id)
         {
-            throw new NotFiniteNumberException();
+            var userId = GetCurrentUserId();
+            var order = _businessService.GetOrderByUserId(userId);
+            var product = _businessService.GetProductById(id);
+            _businessService.AddProductInOrder(product, order);
+            return RedirectToAction("Index");
         }
         public IActionResult RemoveFromProduct(int id)
         {
