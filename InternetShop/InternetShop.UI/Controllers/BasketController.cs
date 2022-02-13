@@ -1,10 +1,12 @@
 ﻿using InternetShop.BL.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace InternetShop.UI.Controllers
@@ -41,7 +43,10 @@ namespace InternetShop.UI.Controllers
         }
         private Guid GetCurrentUserId()
         {
-            throw new NotImplementedException();
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            return new System.Guid(claim.Value);
+
         }
     }
 }
