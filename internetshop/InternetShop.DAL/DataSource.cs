@@ -222,7 +222,7 @@ namespace InternetShop.DAL
             }
             else
             {
-                var newOrder = new Order() { UserId = id };
+                var newOrder = new Order() { UserId = id, Products = new List<Product>() };
                 _dBContext.Orders.Add(newOrder);
                 _dBContext.SaveChanges();
                 return new OrderDTO() { UserId = newOrder.UserId };
