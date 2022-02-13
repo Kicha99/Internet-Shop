@@ -116,9 +116,16 @@ namespace InternetShop.BL
                                     Description = p.Description,
                                     Price = p.Price,
                                     Title = p.Title
-                                }).ToList()
-                    //child=
-                };
+                                }).ToList(),
+                     Child = (from p in category.Child
+                              where category.ChildId == p.CategoryId
+                              select new ModelCategory()
+                              {
+                                  ChildId = p.ChildId,
+                                  Id = p.Id,
+                                  Title = p.Title
+                              })
+                 };
         }
 
         public ModelOrder GetOrderById(int orderId)

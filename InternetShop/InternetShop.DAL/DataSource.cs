@@ -143,7 +143,8 @@ namespace InternetShop.DAL
                                                               {
                                                                   Title = c.Title,
                                                                   Id = c.Id,
-                                                                  ChildId = c.ChildId
+                                                                  ChildId = c.ChildId,
+                                                                  CategoryId = c.CategoryId
                                                               }).ToList(),                                                 
 
                                                   };
@@ -171,7 +172,8 @@ namespace InternetShop.DAL
                                                           {
                                                               Title = c.Title,
                                                               Id = c.Id,
-                                                              ChildId = c.ChildId
+                                                              ChildId = c.ChildId,
+                                                              CategoryId = c.CategoryId
                                                           }).ToList()
                                              };
             return child.ToList();
@@ -339,7 +341,8 @@ namespace InternetShop.DAL
                                                  {
                                                      Title = c.Title,
                                                      Id = c.Id,
-                                                     ChildId = c.ChildId
+                                                     ChildId = c.ChildId,
+                                                     CategoryId = c.CategoryId
                                                  }).ToList()
 
                                     }).FirstOrDefault();
