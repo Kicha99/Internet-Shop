@@ -164,7 +164,15 @@ namespace InternetShop.DAL
                                              select new CategoryDTO()
                                              {
                                                  Id = p.Id,
-                                                 Title = p.Title//child=
+                                                 Title = p.Title,
+                                                 Child = (from c in _dBContext.Categories
+                                                          where p.ChildId == c.CategoryId
+                                                          select new CategoryDTO()
+                                                          {
+                                                              Title = c.Title,
+                                                              Id = c.Id,
+                                                              ChildId = c.ChildId
+                                                          }).ToList()
                                              };
             return child.ToList();
         }
@@ -324,8 +332,15 @@ namespace InternetShop.DAL
                                                         Id = x.Id,
                                                         Price = x.Price,
                                                         Title = x.Title 
-                                                    }).ToList()
-                                        //child=
+                                                    }).ToList(),
+                                        Child = (from c in _dBContext.Categories
+                                                 where p.ChildId == c.CategoryId
+                                                 select new CategoryDTO()
+                                                 {
+                                                     Title = c.Title,
+                                                     Id = c.Id,
+                                                     ChildId = c.ChildId
+                                                 }).ToList()
 
                                     }).FirstOrDefault();
             return category;
