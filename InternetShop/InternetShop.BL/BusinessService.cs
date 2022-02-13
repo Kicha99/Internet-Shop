@@ -40,7 +40,7 @@ namespace InternetShop.BL
             };
             OrderDTO orderDTO = new OrderDTO()
             {
-                ClientId = order.ClientId,
+                UserId = order.UserId,
                 Id = order.Id,
                 Products = (from p in order.Products
                             select new ProductDTO()
@@ -134,7 +134,7 @@ namespace InternetShop.BL
 
             ModelOrder newOrder = new ModelOrder()
             {
-                ClientId = order.ClientId,
+                UserId = order.UserId,
                 Id = order.Id,
                 Products = (from p in order.Products
                             select new ModelProduct()
@@ -158,7 +158,7 @@ namespace InternetShop.BL
                 yield return new ModelOrder()
                 {
                     Id = item.Id,
-                    ClientId = item.ClientId,
+                    UserId = item.UserId,
                     Products = (from p in item.Products
                                 where p != null
                                 select new ModelProduct()

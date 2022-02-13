@@ -58,7 +58,7 @@ namespace InternetShop.DAL
         {
             Order newOrder = new Order()
             {
-                ClientId = order.ClientId,
+                UserId = order.UserId,
             };
             _dBContext.Orders.Add(newOrder);
             _dBContext.SaveChanges();
@@ -184,7 +184,7 @@ namespace InternetShop.DAL
             IEnumerable<OrderDTO> orders = from p in _dBContext.Orders
                                            select new OrderDTO()
                                            {
-                                               ClientId = p.ClientId,
+                                               UserId = p.UserId,
                                                Products = (from x in p.Products
                                                           select new ProductDTO()
                                                           {
@@ -273,7 +273,7 @@ namespace InternetShop.DAL
                               select new OrderDTO()
                               {
                                   Id = p.Id,
-                                  ClientId = p.ClientId,
+                                  UserId = p.UserId,
                                   Products = (from x in p.Products
                                              select new ProductDTO()
                                              {
