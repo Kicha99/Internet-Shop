@@ -119,37 +119,47 @@ namespace InternetShop.DAL
             return products.ToList();
         }
 
-        public IEnumerable<CategoryDTO> GetTopCategories()
+        public CategoryDTO GetTopCategory()
         {
             int rootID = (from p in _dBContext.Categories
                           where p.Title == "ROOT"
                           select p.ChildId.Value).FirstOrDefault();
-            IEnumerable < CategoryDTO > categories = from p in _dBContext.Categories
-                                                     where p.CategoryId == rootID
-                                                  select new CategoryDTO()
-                                                  {
-                                                      Id = p.Id,
-                                                      Title = p.Title,
-                                                      Products = (from x in p.Products
-                                                                  select new ProductDTO()
-                                                                  {
-                                                                      Id = x.Id,
-                                                                      Description = x.Description,
-                                                                      Price = x.Price,
-                                                                      Title = x.Title
-                                                                  }).ToList(),
-                                                     Child = (from c in _dBContext.Categories where p.ChildId == c.CategoryId
-                                                              select new CategoryDTO()
-                                                              {
-                                                                  Title = c.Title,
-                                                                  Id = c.Id,
-                                                                  ChildId = c.ChildId,
-                                                                  CategoryId = c.CategoryId
-                                                              }).ToList(),                                                 
+            return new CategoryDTO()
+            {
+                Child = GetChildCategoriesById(rootID).ToList(),
+                ChildId = rootID,
+                Products = GetProductsByCategoryId(rootID).ToList(),
+                Title = ">",
+                Id = rootID
 
-                                                  };
+            };
+
+            //IEnumerable < CategoryDTO > categories = from p in _dBContext.Categories
+            //                                         where p.CategoryId == rootID
+            //                                      select new CategoryDTO()
+            //                                      {
+            //                                          Id = p.Id,
+            //                                          Title = p.Title,
+            //                                          Products = (from x in p.Products
+            //                                                      select new ProductDTO()
+            //                                                      {
+            //                                                          Id = x.Id,
+            //                                                          Description = x.Description,
+            //                                                          Price = x.Price,
+            //                                                          Title = x.Title
+            //                                                      }).ToList(),
+            //                                         Child = (from c in _dBContext.Categories where p.ChildId == c.CategoryId
+            //                                                  select new CategoryDTO()
+            //                                                  {
+            //                                                      Title = c.Title,
+            //                                                      Id = c.Id,
+            //                                                      ChildId = c.ChildId,
+            //                                                      CategoryId = c.CategoryId
+            //                                                  }).ToList(),                                                 
+
+            //                                      };
             
-            return categories.ToList();
+            //return categories.ToList();
         }
 
         public IEnumerable<CategoryDTO> GetChildCategoriesById(int id)
