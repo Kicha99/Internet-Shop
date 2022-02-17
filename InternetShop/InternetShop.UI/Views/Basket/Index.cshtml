@@ -3,6 +3,6 @@
 @{ 
     foreach (var item in Model.Products)
     {
-        <p>@item.Title @item.Price @item.Description <a href="/Basket/RemoveFromProduct/@item.Id"></a></p>
+        <p>@item.Title @item.Price @item.Description <a href="/Basket/RemoveFromBasket/@item.Id">RemoveFromBasket</a></p>
     }
 }

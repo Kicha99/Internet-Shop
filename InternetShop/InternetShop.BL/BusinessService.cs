@@ -234,7 +234,8 @@ namespace InternetShop.BL
 
             var o = new OrderDTO()
             {
-                Id = order.Id
+                Id = order.Id,
+                UserId = order.UserId
             };
 
             _ds.RemoveProductFromOrder(deleteProduct, o);

@@ -379,18 +379,12 @@ namespace InternetShop.DAL
 
         public void RemoveProductFromOrder(ProductDTO product, OrderDTO order)
         {
-            var deleteProduct = new Product()
-            {
-                CategoryId = product.CategoryId,
-                Title = product.Title,
-                Price = product.Price,
-                Description = product.Description,
-                Id = product.Id
-                //category, orders ?
-            };
+            var deleteProduct = (from p in _dBContext.Products
+                                where p.Id == product.Id
+                                select p).FirstOrDefault();
 
             var o = (from p in _dBContext.Orders
-                    where p.Id == order.Id
+                    where p.UserId == order.UserId
                     select p).FirstOrDefault();
             o.Products.Remove(deleteProduct);
 
