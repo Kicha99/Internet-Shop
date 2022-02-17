@@ -68,34 +68,60 @@ namespace InternetShop.BL
             _ds.EditProduct(newPr);
         }
 
-        public IEnumerable<ModelCategory> GetCategories()
+        public ModelCategory GetRootCategory()
         {
-            var categories = _ds.GetTopCategories();
-            foreach (var item in categories)
+            var category = _ds.GetTopCategory();
+            //var children = _ds.GetChildCategoriesById(category.Id);
+            return new ModelCategory()
             {
-                yield return new ModelCategory()
-                {
-                    Id = item.Id,
-                    Title = item.Title,
-                    Products = (from p in item.Products
-                                where p != null
-                                select new ModelProduct()
-                                {
-                                    Id = p.Id,
-                                    Description = p.Description,
-                                    Price = p.Price,
-                                    Title = p.Title
-                                }).ToList(),
-                    Child = (from p in item.Child 
-                             select new ModelCategory()
-                             {
-                                 Title = p.Title,
-                                 Id = p.Id,
-                                 ChildId = p.ChildId
-                                 
-                             })
-                };
-            }
+                Id = category.Id,
+                Title = category.Title,
+                Products = (from p in category.Products
+                            select new ModelProduct()
+                            {
+                                Id = p.Id,
+                                CategoryId = p.CategoryId,
+                                Description = p.Description,
+                                Price = p.Price,
+                                Title = p.Title
+                            }).ToList(),
+                Child = (from p in category.Child
+                         where category.ChildId == p.CategoryId
+                         select new ModelCategory()
+                         {
+                             ChildId = p.ChildId,
+                             Id = p.Id,
+                             Title = p.Title
+                         }),
+                ChildId = category.ChildId
+
+            };
+
+            //foreach (var item in categories)
+            //{
+            //    yield return new ModelCategory()
+            //    {
+            //        Id = item.Id,
+            //        Title = item.Title,
+            //        Products = (from p in item.Products
+            //                    where p != null
+            //                    select new ModelProduct()
+            //                    {
+            //                        Id = p.Id,
+            //                        Description = p.Description,
+            //                        Price = p.Price,
+            //                        Title = p.Title
+            //                    }).ToList(),
+            //        Child = (from p in item.Child 
+            //                 select new ModelCategory()
+            //                 {
+            //                     Title = p.Title,
+            //                     Id = p.Id,
+            //                     ChildId = p.ChildId
+
+            //                 })
+            //    };
+            //}
             //map to Model Category
         }
 

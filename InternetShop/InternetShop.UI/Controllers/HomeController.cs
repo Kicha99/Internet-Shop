@@ -23,8 +23,8 @@ namespace InternetShop.UI.Controllers
 
         public IActionResult Index()
         {
-            var categories = _businessService.GetCategories();
-            return View(categories);
+            var category = _businessService.GetRootCategory();
+            return View(category);
         }
 
         public IActionResult Privacy()

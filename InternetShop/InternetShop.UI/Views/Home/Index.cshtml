@@ -2,20 +2,25 @@
     ViewData["Title"] = "Home Page";
 }
 
-
-@model IEnumerable<InternetShop.BL.Interfaces.ModelCategory>
-
-<h1>The large internet shop</h1>
+@model InternetShop.BL.Interfaces.ModelCategory
 
 @{
-    foreach (var item in Model)
+
+    <h3>@Model.Title</h3>
+    foreach (var prod in Model.Products)
     {
-        <h2>@item.Title</h2>
-        if (item.Child == null)
-            continue;
-        foreach (var subcategory in item.Child)
+        <a href="/Home/Product/@prod.Id">@prod.Title</a>
+        <br />
+    }
+    if (Model.ChildId.HasValue)
+    {
+        foreach (var subcategory in Model.Child)
         {
-            <a href="/Home/Subcategory/@subcategory.Id">@subcategory.Title</a>
+            @subcategory.Title <a href="/Home/Subcategory/@subcategory.Id">Subcategory </a>
+
+
         }
     }
 }
+
+

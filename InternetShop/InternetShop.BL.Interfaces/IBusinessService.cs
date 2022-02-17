@@ -8,7 +8,7 @@ namespace InternetShop.BL.Interfaces
 {
     public interface IBusinessService
     {
-        IEnumerable<ModelCategory> GetCategories();
+        ModelCategory GetRootCategory();
         IEnumerable<ModelProduct> GetProductsByCategoryId(int id);
         ModelProduct GetProductById(int id);
         IEnumerable<ModelOrder> GetOrders();
