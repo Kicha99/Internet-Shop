@@ -355,7 +355,7 @@ namespace InternetShop.DAL
                                         Id = p.Id,
                                         Title = p.Title,
                                         Products = (from x in _dBContext.Products
-                                                    where p.CategoryId == x.Id
+                                                    where p.Id == x.CategoryId
                                                     select new ProductDTO()
                                                     {
                                                         Description = x.Description,
