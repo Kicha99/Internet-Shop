@@ -37,9 +37,14 @@ namespace InternetShop.UI.Controllers
             _businessService.AddProductInOrder(product, order);
             return RedirectToAction("Index");
         }
-        public IActionResult RemoveFromProduct(int id)
+        public IActionResult RemoveFromBasket(int id)
         {
-            throw new NotFiniteNumberException();
+            var userId = GetCurrentUserId();
+            var order = _businessService.GetOrderByUserId(userId);
+            var product = _businessService.GetProductById(id);
+            _businessService.RemoveFromOrder(product, order);
+
+            return RedirectToAction("Index");
         }
         public IActionResult BuyProducts()
         {

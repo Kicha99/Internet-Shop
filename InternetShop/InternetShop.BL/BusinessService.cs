@@ -221,6 +221,27 @@ namespace InternetShop.BL
             }
         }
 
+        public void RemoveFromOrder(ModelProduct product, ModelOrder order)
+        {
+            var deleteProduct = new ProductDTO()
+            {
+                CategoryId = product.CategoryId,
+                Description = product.Description,
+                Id = product.Id,
+                Price = product.Price,
+                Title = product.Title
+            };
+
+            var o = new OrderDTO()
+            {
+                Id = order.Id
+            };
+
+            _ds.RemoveProductFromOrder(deleteProduct, o);
+
+            
+        }
+
         public IEnumerable<ModelProduct> SortProductsByPriceAscending(IEnumerable<ModelProduct> mp)
         {
             var sorted = from p in mp

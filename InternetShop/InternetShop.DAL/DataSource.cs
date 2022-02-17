@@ -376,5 +376,26 @@ namespace InternetShop.DAL
                                     }).FirstOrDefault();
             return category;
         }
+
+        public void RemoveProductFromOrder(ProductDTO product, OrderDTO order)
+        {
+            var deleteProduct = new Product()
+            {
+                CategoryId = product.CategoryId,
+                Title = product.Title,
+                Price = product.Price,
+                Description = product.Description,
+                Id = product.Id
+                //category, orders ?
+            };
+
+            var o = (from p in _dBContext.Orders
+                    where p.Id == order.Id
+                    select p).FirstOrDefault();
+            o.Products.Remove(deleteProduct);
+
+            _dBContext.Orders.Update(o);
+            _dBContext.SaveChanges();
+        }
     }
 }
