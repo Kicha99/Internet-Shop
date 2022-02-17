@@ -108,7 +108,7 @@ namespace InternetShop.BL
                 {
                     Id = category.Id,
                     Title = category.Title,
-                    Products = (from p in category.Products
+                    Products = (from p in category.Products                               
                                 select new ModelProduct() 
                                 { 
                                     Id = p.Id,
