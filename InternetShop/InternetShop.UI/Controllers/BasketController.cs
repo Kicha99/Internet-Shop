@@ -57,6 +57,7 @@ namespace InternetShop.UI.Controllers
         [HttpPost]
         public IActionResult Processing([FromForm] Payment payment)
         {
+            _businessService.Payment(GetCurrentUserId());
             return View(payment);
         }
         private Guid GetCurrentUserId()

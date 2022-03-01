@@ -24,7 +24,8 @@ namespace InternetShop.BL
                 Id = pr.Id,
                 Description = pr.Description,
                 Title = pr.Title,
-                Price = pr.Price
+                Price = pr.Price,
+                NumberOfPurchase = pr.NumberOfPurchase
             };
             _ds.AddProduct(res);
         }
@@ -36,7 +37,8 @@ namespace InternetShop.BL
                 Id = product.Id,
                 Description = product.Description,
                 Price = product.Price,
-                Title = product.Title
+                Title = product.Title,
+                NumberOfPurchase = product.NumberOfPurchase
             };
             OrderDTO orderDTO = new OrderDTO()
             {
@@ -48,7 +50,8 @@ namespace InternetShop.BL
                                 Id = p.Id,
                                 Description = p.Description,
                                 Price = p.Price,
-                                Title = p.Title
+                                Title = p.Title,
+                                NumberOfPurchase = p.NumberOfPurchase
                             }).ToList()
             };
 
@@ -63,7 +66,8 @@ namespace InternetShop.BL
                 Description = pr.Description,
                 Price = pr.Price,
                 Title = pr.Title,
-                CategoryId = pr.CategoryId
+                CategoryId = pr.CategoryId,
+                NumberOfPurchase = pr.NumberOfPurchase
             };
             _ds.EditProduct(newPr);
         }
@@ -83,7 +87,8 @@ namespace InternetShop.BL
                                 CategoryId = p.CategoryId,
                                 Description = p.Description,
                                 Price = p.Price,
-                                Title = p.Title
+                                Title = p.Title,
+                                NumberOfPurchase = p.NumberOfPurchase
                             }).ToList(),
                 Child = (from p in category.Child
                          where category.ChildId == p.CategoryId
@@ -141,7 +146,8 @@ namespace InternetShop.BL
                                     CategoryId = p.CategoryId,
                                     Description = p.Description,
                                     Price = p.Price,
-                                    Title = p.Title
+                                    Title = p.Title,
+                                    NumberOfPurchase = p.NumberOfPurchase
                                 }).ToList(),
                      Child = (from p in category.Child
                               where category.ChildId == p.CategoryId
@@ -168,7 +174,8 @@ namespace InternetShop.BL
                                 Id = p.Id,
                                 Description = p.Description,
                                 Price = p.Price,
-                                Title = p.Title
+                                Title = p.Title,
+                                NumberOfPurchase = p.NumberOfPurchase
                             }).ToList()
             };
 
@@ -190,7 +197,8 @@ namespace InternetShop.BL
                                 CategoryId = p.CategoryId,
                                 Description = p.Description,
                                 Price = p.Price,
-                                Title = p.Title
+                                Title = p.Title,
+                                NumberOfPurchase = p.NumberOfPurchase
                             }).ToList()
             };
         }
@@ -212,7 +220,8 @@ namespace InternetShop.BL
                                     Id = p.Id,
                                     Description = p.Description,
                                     Price = p.Price,
-                                    Title = p.Title
+                                    Title = p.Title,
+                                    NumberOfPurchase = p.NumberOfPurchase
                                 }).ToList()
                 };
             }
@@ -228,7 +237,8 @@ namespace InternetShop.BL
                 CategoryId = p.CategoryId,
                 Price = p.Price,
                 Description = p.Description,
-                Title = p.Title
+                Title = p.Title,
+                NumberOfPurchase = p.NumberOfPurchase
             };
         }
 
@@ -242,7 +252,8 @@ namespace InternetShop.BL
                     Id = item.Id,
                     Description = item.Description,
                     Price = item.Price,
-                    Title = item.Title
+                    Title = item.Title,
+                    NumberOfPurchase = item.NumberOfPurchase
                 };
             }
         }
@@ -255,7 +266,8 @@ namespace InternetShop.BL
                 Description = product.Description,
                 Id = product.Id,
                 Price = product.Price,
-                Title = product.Title
+                Title = product.Title,
+                NumberOfPurchase = product.NumberOfPurchase
             };
 
             var o = new OrderDTO()
@@ -275,6 +287,19 @@ namespace InternetShop.BL
                          orderby p.Price
                          select p;
             return sorted;
+        }
+
+        public void Payment(Guid userId)
+        {
+            var order = _ds.GetOrderByClient(userId);
+            foreach (var item in order.Products)
+            {
+                item.NumberOfPurchase++;
+                _ds.EditProduct(item);
+                _ds.RemoveProductFromOrder(item, order);
+            }
+
+
         }
     }
 }

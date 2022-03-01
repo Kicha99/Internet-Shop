@@ -22,7 +22,8 @@ namespace InternetShop.DAL
             {
                 Title = product.Title,
                 Price = product.Price,
-                Description = product.Description
+                Description = product.Description,
+                NumberOfPurchase = product.NumberOfPurchase
                 
             };
             _dBContext.Products.Add(newProduct);
@@ -32,15 +33,17 @@ namespace InternetShop.DAL
         public void EditProduct(ProductDTO product)
         {
             //Ставит CategoryId в null +
-            Product editP = new Product()
-            {
-                Description = product.Description,
-                Price = product.Price,
-                Title = product.Title,
-                Id = product.Id,
-                CategoryId = product.CategoryId
-            };
-            _dBContext.Products.Update(editP);
+            var editp = (from p in _dBContext.Products where p.Id == product.Id select p).FirstOrDefault();
+
+            editp.Description = product.Description;
+            editp.Price = product.Price;
+            editp.Title = product.Title;
+            editp.Id = product.Id;
+            editp.CategoryId = product.CategoryId;
+            editp.NumberOfPurchase = product.NumberOfPurchase;
+            
+            
+            _dBContext.Products.Update(editp);
             _dBContext.SaveChanges();
         }
 
@@ -114,7 +117,8 @@ namespace InternetShop.DAL
                                                     Id = p.Id,
                                                     Description = p.Description,
                                                     Price = p.Price,
-                                                    Title = p.Title
+                                                    Title = p.Title,
+                                                    NumberOfPurchase = p.NumberOfPurchase
                                                };
             return products.ToList();
         }
@@ -201,7 +205,8 @@ namespace InternetShop.DAL
                                                               Description = x.Description,
                                                               Id = x.Id,
                                                               Price = x.Price,
-                                                              Title = x.Title
+                                                              Title = x.Title,
+                                                              NumberOfPurchase = x.NumberOfPurchase
                                                           }).ToList(),
                                                 Id = p.Id
                                            };
@@ -225,7 +230,8 @@ namespace InternetShop.DAL
                                     CategoryId = p.CategoryId,
                                     Description = p.Description,
                                     Price = p.Price,
-                                    Title = p.Title
+                                    Title = p.Title,
+                                    NumberOfPurchase = p.NumberOfPurchase
                                 }).ToList(),
                     UserId = order.UserId
                 };
@@ -286,7 +292,8 @@ namespace InternetShop.DAL
                         Id = item.Id,
                         Description = item.Description,
                         Price = item.Price,
-                        Title = item.Title
+                        Title = item.Title,
+                        NumberOfPurchase = item.NumberOfPurchase
                     };
 
                     entityOrder.Products.Add(product);
@@ -318,7 +325,8 @@ namespace InternetShop.DAL
                                                  Description = x.Description,
                                                  Id = x.Id,
                                                  Price = x.Price,
-                                                 Title = x.Title
+                                                 Title = x.Title,
+                                                 NumberOfPurchase = x.NumberOfPurchase
                                              }).ToList()
                               }).FirstOrDefault();
 
@@ -335,7 +343,8 @@ namespace InternetShop.DAL
                                       Id = p.Id,
                                       Price = p.Price,
                                       Title = p.Title,
-                                      CategoryId = p.CategoryId
+                                      CategoryId = p.CategoryId,
+                                      NumberOfPurchase = p.NumberOfPurchase
                                   }).FirstOrDefault();
             return product;
         }
@@ -371,7 +380,8 @@ namespace InternetShop.DAL
                                                         Description = x.Description,
                                                         Id = x.Id,
                                                         Price = x.Price,
-                                                        Title = x.Title 
+                                                        Title = x.Title,
+                                                        NumberOfPurchase = x.NumberOfPurchase
                                                     }).ToList(),
                                         Child = (from c in _dBContext.Categories
                                                  where p.ChildId == c.CategoryId
