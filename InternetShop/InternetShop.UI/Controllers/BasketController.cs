@@ -1,4 +1,5 @@
 ﻿using InternetShop.BL.Interfaces;
+using InternetShop.UI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -48,7 +49,15 @@ namespace InternetShop.UI.Controllers
         }
         public IActionResult BuyProducts()
         {
-            throw new NotFiniteNumberException();
+            var id = GetCurrentUserId();
+            var order = _businessService.GetOrderByUserId(id);
+
+            return View(order);
+        }
+        [HttpPost]
+        public IActionResult Processing([FromForm] Payment payment)
+        {
+            return View(payment);
         }
         private Guid GetCurrentUserId()
         {
