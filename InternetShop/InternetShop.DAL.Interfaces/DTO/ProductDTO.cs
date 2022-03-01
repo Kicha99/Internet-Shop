@@ -22,5 +22,6 @@ namespace InternetShop.DAL.Interfaces.DTO
             ProductDTO o = (ProductDTO)obj;
             return o.Id == Id;
         }
+        public int NumberOfPurchase { get; set; }
     }
 }
