@@ -301,5 +301,21 @@ namespace InternetShop.BL
 
 
         }
+
+        public IEnumerable<ModelProduct> GetBestFiveProducts()
+        {
+            IEnumerable<ModelProduct> sortProducts = (from p in _ds.GetAllProducts()
+                                                 select new ModelProduct()
+                                                 {
+                                                     Id = p.Id,
+                                                     CategoryId = p.CategoryId,
+                                                     Description = p.Description,
+                                                     NumberOfPurchase = p.NumberOfPurchase,
+                                                     Price = p.Price,
+                                                     Title = p.Title
+                                                 }).OrderByDescending(t=> t.NumberOfPurchase);
+            return sortProducts.Take(5);
+                   
+        }
     }
 }

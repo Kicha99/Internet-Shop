@@ -29,5 +29,7 @@ namespace InternetShop.DAL.Interfaces
         void AddProductToCategory(CategoryDTO category, ProductDTO product);
         CategoryDTO GetCategoryById(int id);
         void RemoveProductFromOrder(ProductDTO product, OrderDTO order);
+
+        IEnumerable<ProductDTO> GetAllProducts();
     }
 }
