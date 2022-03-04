@@ -411,5 +411,21 @@ namespace InternetShop.DAL
             _dBContext.Orders.Update(o);
             _dBContext.SaveChanges();
         }
+
+        public IEnumerable<ProductDTO> GetAllProducts()
+        {
+            IEnumerable<ProductDTO> products = from p in _dBContext.Products
+                                               select new ProductDTO()
+                                               {
+                                                   CategoryId = p.CategoryId,
+                                                   Description = p.Description,
+                                                   Id = p.Id,
+                                                   NumberOfPurchase = p.NumberOfPurchase,
+                                                   Price = p.Price,
+                                                   Title = p.Title
+                                               };
+
+            return products;
+        }
     }
 }
