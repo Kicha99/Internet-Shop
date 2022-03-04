@@ -24,7 +24,15 @@ namespace InternetShop.UI.Controllers
         public IActionResult Index()
         {
             var category = _businessService.GetRootCategory();
-            return View(category);
+            var bestProducts = _businessService.GetBestFiveProducts();
+
+            IndexModel indexView = new IndexModel()
+            {
+                RootCategory = category,
+                BestProducts = bestProducts
+            };
+
+            return View(indexView);
         }
 
         public IActionResult Privacy()
@@ -48,5 +56,7 @@ namespace InternetShop.UI.Controllers
             var product = _businessService.GetProductById(id);
             return View(product);
         }
+
+        
     }
 }

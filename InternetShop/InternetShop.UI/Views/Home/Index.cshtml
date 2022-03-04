@@ -2,25 +2,32 @@
     ViewData["Title"] = "Home Page";
 }
 
-@model InternetShop.BL.Interfaces.ModelCategory
+@model InternetShop.UI.Models.IndexModel
 
 @{
 
-    <h3>@Model.Title</h3>
-    foreach (var prod in Model.Products)
+    <h3>@Model.RootCategory.Title</h3>
+    foreach (var prod in Model.RootCategory.Products)
     {
         <a href="/Home/Product/@prod.Id">@prod.Title</a>
         <br />
     }
-    if (Model.ChildId.HasValue)
+    if (Model.RootCategory.ChildId.HasValue)
     {
-        foreach (var subcategory in Model.Child)
+        foreach (var subcategory in Model.RootCategory.Child)
         {
             @subcategory.Title <a href="/Home/Subcategory/@subcategory.Id">Subcategory </a>
 
 
         }
     }
+    <br>
+    <p>Best products</p>
+    foreach (var item in Model.BestProducts)
+    {
+        <a href="/Home/Product/@item.Id"> @item.Title</a><br>
+    }
+
 }
 
 
