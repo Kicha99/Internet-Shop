@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InternetShop.UI.Models
 {
-    public class IndexModel
+    public class ShowCaseModel
     {
         public IEnumerable<ModelProduct> BestProducts { get; set; }
         public ModelCategory RootCategory { get; set; }

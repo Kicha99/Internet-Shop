@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-@model InternetShop.UI.Models.IndexModel
+@model InternetShop.UI.Models.ShowCaseModel
 
 @{
 
@@ -17,8 +17,6 @@
         foreach (var subcategory in Model.RootCategory.Child)
         {
             @subcategory.Title <a href="/Home/Subcategory/@subcategory.Id">Subcategory </a>
-
-
         }
     }
     <br>

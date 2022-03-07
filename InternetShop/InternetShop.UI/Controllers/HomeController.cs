@@ -26,7 +26,7 @@ namespace InternetShop.UI.Controllers
             var category = _businessService.GetRootCategory();
             var bestProducts = _businessService.GetBestFiveProducts();
 
-            IndexModel indexView = new IndexModel()
+            ShowCaseModel indexView = new ShowCaseModel()
             {
                 RootCategory = category,
                 BestProducts = bestProducts
