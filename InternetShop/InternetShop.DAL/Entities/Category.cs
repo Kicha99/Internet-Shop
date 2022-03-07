@@ -19,6 +19,5 @@ namespace InternetShop.DAL.Entities
         public virtual  IEnumerable<Category> Child { get; set; }
         public virtual IList<Product> Products { get; set; }
 
-        public int? ChildId { get; set; }
     }
 }
