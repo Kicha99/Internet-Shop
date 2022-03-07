@@ -1,4 +1,5 @@
-﻿using InternetShop.UI.Models;
+﻿using InternetShop.BL.Interfaces;
+using InternetShop.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,15 +13,26 @@ namespace InternetShop.UI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IBusinessService _businessService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IBusinessService businessService)
         {
             _logger = logger;
+            _businessService = businessService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var category = _businessService.GetRootCategory();
+            var bestProducts = _businessService.GetBestFiveProducts();
+
+            ShowCaseModel indexView = new ShowCaseModel()
+            {
+                RootCategory = category,
+                BestProducts = bestProducts
+            };
+
+            return View(indexView);
         }
 
         public IActionResult Privacy()
@@ -33,5 +45,18 @@ namespace InternetShop.UI.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult Subcategory(int id)
+        {
+            var category = _businessService.GetCategoryById(id);
+            return View(category);
+        }
+
+        public IActionResult Product(int id)
+        {
+            var product = _businessService.GetProductById(id);
+            return View(product);
+        }
+
+        
     }
 }
