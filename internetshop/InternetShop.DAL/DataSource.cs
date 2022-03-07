@@ -390,12 +390,11 @@ namespace InternetShop.DAL
                                                         NumberOfPurchase = x.NumberOfPurchase
                                                     }).ToList(),
                                         Child = (from c in _dBContext.Categories
-                                                 where p.ChildId == c.CategoryId
+                                                 where p.Id == c.CategoryId
                                                  select new CategoryDTO()
                                                  {
                                                      Title = c.Title,
                                                      Id = c.Id,
-                                                     ChildId = c.ChildId,
                                                      CategoryId = c.CategoryId
                                                  }).ToList()
 
