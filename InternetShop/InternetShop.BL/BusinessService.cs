@@ -94,11 +94,11 @@ namespace InternetShop.BL
                          where category.ChildId == p.CategoryId
                          select new ModelCategory()
                          {
-                             ChildId = p.ChildId,
+                             // ChildId = p.ChildId,
                              Id = p.Id,
                              Title = p.Title
                          }),
-                ChildId = category.ChildId
+               // ChildId = category.ChildId
 
             };
 

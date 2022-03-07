@@ -12,13 +12,12 @@
         <a href="/Home/Product/@prod.Id">@prod.Title</a>
         <br />
     }
-    if (Model.RootCategory.ChildId.HasValue)
-    {
+   
         foreach (var subcategory in Model.RootCategory.Child)
         {
             @subcategory.Title <a href="/Home/Subcategory/@subcategory.Id">Subcategory </a>
         }
-    }
+
     <br>
     <p>Best products</p>
     foreach (var item in Model.BestProducts)
