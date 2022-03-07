@@ -9,7 +9,7 @@ namespace InternetShop.DAL.Interfaces.DTO
     public class OrderDTO
     {
         public int Id { get; set; }
-        public int ClientId { get; set; }
+        public Guid UserId { get; set; }
         public IList<ProductDTO> Products { get; set; }
     }
 }

@@ -1,0 +1,17 @@
+﻿@model InternetShop.BL.Interfaces.ModelCategory
+
+@{
+
+    <h3>@Model.Title</h3>
+    foreach (var prod in Model.Products)
+    {
+            <a href="/Home/Product/@prod.Id">@prod.Title</a><br/>
+    }
+    
+    foreach (var subcategory in Model.Child)
+    {
+        @subcategory.Title <a href="/Home/Subcategory/@subcategory.Id">Subcategory </a>
+    }
+}
+
+

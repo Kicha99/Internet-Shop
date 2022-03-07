@@ -24,7 +24,8 @@ namespace InternetShop.BL
                 Id = pr.Id,
                 Description = pr.Description,
                 Title = pr.Title,
-                Price = pr.Price
+                Price = pr.Price,
+                NumberOfPurchase = pr.NumberOfPurchase
             };
             _ds.AddProduct(res);
         }
@@ -36,11 +37,12 @@ namespace InternetShop.BL
                 Id = product.Id,
                 Description = product.Description,
                 Price = product.Price,
-                Title = product.Title
+                Title = product.Title,
+                NumberOfPurchase = product.NumberOfPurchase
             };
             OrderDTO orderDTO = new OrderDTO()
             {
-                ClientId = order.ClientId,
+                UserId = order.UserId,
                 Id = order.Id,
                 Products = (from p in order.Products
                             select new ProductDTO()
@@ -48,7 +50,8 @@ namespace InternetShop.BL
                                 Id = p.Id,
                                 Description = p.Description,
                                 Price = p.Price,
-                                Title = p.Title
+                                Title = p.Title,
+                                NumberOfPurchase = p.NumberOfPurchase
                             }).ToList()
             };
 
@@ -63,47 +66,97 @@ namespace InternetShop.BL
                 Description = pr.Description,
                 Price = pr.Price,
                 Title = pr.Title,
-                CategoryId = pr.CategoryId
+                CategoryId = pr.CategoryId,
+                NumberOfPurchase = pr.NumberOfPurchase
             };
             _ds.EditProduct(newPr);
         }
 
-        public IEnumerable<ModelCategory> GetCategories()
+        public ModelCategory GetRootCategory()
         {
-            var categories = _ds.GetTopCategories();
-            foreach (var item in categories)
+            var category = _ds.GetTopCategory();
+            //var children = _ds.GetChildCategoriesById(category.Id);
+            return new ModelCategory()
             {
-                yield return new ModelCategory()
-                {
-                    Id = item.Id,
-                    Title = item.Title,
-                    Products = (from p in item.Products
-                                where p != null
-                                select new ModelProduct()
-                                {
-                                    Id = p.Id,
-                                    Description = p.Description,
-                                    Price = p.Price,
-                                    Title = p.Title
-                                }).ToList() //Null Reference Exception
-                };
-            }
+                Id = category.Id,
+                Title = category.Title,
+                Products = (from p in category.Products
+                            select new ModelProduct()
+                            {
+                                Id = p.Id,
+                                CategoryId = p.CategoryId,
+                                Description = p.Description,
+                                Price = p.Price,
+                                Title = p.Title,
+                                NumberOfPurchase = p.NumberOfPurchase
+                            }).ToList(),
+                Child = (from p in category.Child
+                         where category.ChildId == p.CategoryId
+                         select new ModelCategory()
+                         {
+                             // ChildId = p.ChildId,
+                             Id = p.Id,
+                             Title = p.Title
+                         }),
+               // ChildId = category.ChildId
+
+            };
+
+            //foreach (var item in categories)
+            //{
+            //    yield return new ModelCategory()
+            //    {
+            //        Id = item.Id,
+            //        Title = item.Title,
+            //        Products = (from p in item.Products
+            //                    where p != null
+            //                    select new ModelProduct()
+            //                    {
+            //                        Id = p.Id,
+            //                        Description = p.Description,
+            //                        Price = p.Price,
+            //                        Title = p.Title
+            //                    }).ToList(),
+            //        Child = (from p in item.Child 
+            //                 select new ModelCategory()
+            //                 {
+            //                     Title = p.Title,
+            //                     Id = p.Id,
+            //                     ChildId = p.ChildId
+
+            //                 })
+            //    };
+            //}
             //map to Model Category
         }
 
-        public IEnumerable<ModelCategory> GetChildCategoriesById(int id)
+        public ModelCategory GetCategoryById(int id)
         {
             var children = _ds.GetChildCategoriesById(id);
+            var category = _ds.GetCategoryById(id);
 
-            foreach (var item in children)
-            {
-                yield return new ModelCategory()
+                 return new ModelCategory()
                 {
-                    Id = item.Id,
-                    Title = item.Title
-                };
-            }
-
+                    Id = category.Id,
+                    Title = category.Title,
+                    Products = (from p in category.Products                               
+                                select new ModelProduct() 
+                                { 
+                                    Id = p.Id,
+                                    CategoryId = p.CategoryId,
+                                    Description = p.Description,
+                                    Price = p.Price,
+                                    Title = p.Title,
+                                    NumberOfPurchase = p.NumberOfPurchase
+                                }).ToList(),
+                     Child = (from p in category.Child
+                             
+                              select new ModelCategory()
+                              {
+                                  Id = p.Id,
+                                  Title = p.Title
+                              })
+                 };
         }
 
         public ModelOrder GetOrderById(int orderId)
@@ -112,7 +165,7 @@ namespace InternetShop.BL
 
             ModelOrder newOrder = new ModelOrder()
             {
-                ClientId = order.ClientId,
+                UserId = order.UserId,
                 Id = order.Id,
                 Products = (from p in order.Products
                             select new ModelProduct()
@@ -120,11 +173,33 @@ namespace InternetShop.BL
                                 Id = p.Id,
                                 Description = p.Description,
                                 Price = p.Price,
-                                Title = p.Title
+                                Title = p.Title,
+                                NumberOfPurchase = p.NumberOfPurchase
                             }).ToList()
             };
 
             return newOrder;
+        }
+
+        public ModelOrder GetOrderByUserId(Guid userId)
+        {
+            var order = _ds.GetOrderByClient(userId);
+
+            return new ModelOrder()
+            {
+                Id = order.Id,
+                UserId = order.UserId,
+                Products = (from p in order.Products
+                            select new ModelProduct()
+                            {
+                                Id = p.Id,
+                                CategoryId = p.CategoryId,
+                                Description = p.Description,
+                                Price = p.Price,
+                                Title = p.Title,
+                                NumberOfPurchase = p.NumberOfPurchase
+                            }).ToList()
+            };
         }
 
         public IEnumerable<ModelOrder> GetOrders()
@@ -136,7 +211,7 @@ namespace InternetShop.BL
                 yield return new ModelOrder()
                 {
                     Id = item.Id,
-                    ClientId = item.ClientId,
+                    UserId = item.UserId,
                     Products = (from p in item.Products
                                 where p != null
                                 select new ModelProduct()
@@ -144,7 +219,8 @@ namespace InternetShop.BL
                                     Id = p.Id,
                                     Description = p.Description,
                                     Price = p.Price,
-                                    Title = p.Title
+                                    Title = p.Title,
+                                    NumberOfPurchase = p.NumberOfPurchase
                                 }).ToList()
                 };
             }
@@ -160,7 +236,8 @@ namespace InternetShop.BL
                 CategoryId = p.CategoryId,
                 Price = p.Price,
                 Description = p.Description,
-                Title = p.Title
+                Title = p.Title,
+                NumberOfPurchase = p.NumberOfPurchase
             };
         }
 
@@ -174,9 +251,33 @@ namespace InternetShop.BL
                     Id = item.Id,
                     Description = item.Description,
                     Price = item.Price,
-                    Title = item.Title
+                    Title = item.Title,
+                    NumberOfPurchase = item.NumberOfPurchase
                 };
             }
+        }
+
+        public void RemoveFromOrder(ModelProduct product, ModelOrder order)
+        {
+            var deleteProduct = new ProductDTO()
+            {
+                CategoryId = product.CategoryId,
+                Description = product.Description,
+                Id = product.Id,
+                Price = product.Price,
+                Title = product.Title,
+                NumberOfPurchase = product.NumberOfPurchase
+            };
+
+            var o = new OrderDTO()
+            {
+                Id = order.Id,
+                UserId = order.UserId
+            };
+
+            _ds.RemoveProductFromOrder(deleteProduct, o);
+
+            
         }
 
         public IEnumerable<ModelProduct> SortProductsByPriceAscending(IEnumerable<ModelProduct> mp)
@@ -185,6 +286,35 @@ namespace InternetShop.BL
                          orderby p.Price
                          select p;
             return sorted;
+        }
+
+        public void Payment(Guid userId)
+        {
+            var order = _ds.GetOrderByClient(userId);
+            foreach (var item in order.Products)
+            {
+                item.NumberOfPurchase++;
+                _ds.EditProduct(item);
+                _ds.RemoveProductFromOrder(item, order);
+            }
+
+
+        }
+
+        public IEnumerable<ModelProduct> GetBestFiveProducts()
+        {
+            IEnumerable<ModelProduct> sortProducts = (from p in _ds.GetAllProducts()
+                                                 select new ModelProduct()
+                                                 {
+                                                     Id = p.Id,
+                                                     CategoryId = p.CategoryId,
+                                                     Description = p.Description,
+                                                     NumberOfPurchase = p.NumberOfPurchase,
+                                                     Price = p.Price,
+                                                     Title = p.Title
+                                                 }).OrderByDescending(t=> t.NumberOfPurchase);
+            return sortProducts.Take(5);
+                   
         }
     }
 }

@@ -1,0 +1,23 @@
+﻿@model InternetShop.BL.Interfaces.ModelOrder
+
+@{
+    <form method="post" action="/Basket/Processing">
+        <p>
+            <b>Card Number*</b><br>
+            <input type="text" name="CardNumber" maxlength="12" required>
+        </p>
+        <p>
+            <b>Total</b>><br>
+            @{
+                decimal sum = 0;
+                foreach (var product in Model.Products)
+                {
+                    sum += product.Price;
+                }
+            }
+            <input type="text" size="30" name="Sum" value="@sum" readonly="readonly">
+
+        </p>
+        <p><input type="submit" name="buy" value="Buy" /></p>
+    </form>
+}

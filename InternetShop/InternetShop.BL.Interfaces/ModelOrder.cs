@@ -9,7 +9,7 @@ namespace InternetShop.BL.Interfaces
     public class ModelOrder
     {
         public int Id { get; set; }
-        public int ClientId { get; set; }
+        public Guid UserId { get; set; }
         public IList<ModelProduct> Products { get; set; }
     }
 }

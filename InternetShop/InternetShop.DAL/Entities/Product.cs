@@ -18,5 +18,6 @@ namespace InternetShop.DAL.Entities
         public int? CategoryId { get; set; }
         [ForeignKey(nameof(CategoryId))]
         public virtual Category Category { get; set; }
+        public int NumberOfPurchase { get; set; }
     }
 }

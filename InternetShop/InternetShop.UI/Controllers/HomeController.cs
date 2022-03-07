@@ -23,7 +23,16 @@ namespace InternetShop.UI.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var category = _businessService.GetRootCategory();
+            var bestProducts = _businessService.GetBestFiveProducts();
+
+            ShowCaseModel indexView = new ShowCaseModel()
+            {
+                RootCategory = category,
+                BestProducts = bestProducts
+            };
+
+            return View(indexView);
         }
 
         public IActionResult Privacy()
@@ -36,5 +45,18 @@ namespace InternetShop.UI.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult Subcategory(int id)
+        {
+            var category = _businessService.GetCategoryById(id);
+            return View(category); //TODO
+        }
+
+        public IActionResult Product(int id)
+        {
+            var product = _businessService.GetProductById(id);
+            return View(product);
+        }
+
+        
     }
 }
