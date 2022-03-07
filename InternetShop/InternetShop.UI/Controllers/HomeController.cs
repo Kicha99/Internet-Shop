@@ -48,7 +48,7 @@ namespace InternetShop.UI.Controllers
         public IActionResult Subcategory(int id)
         {
             var category = _businessService.GetCategoryById(id);
-            return View(category); //TODO
+            return View(category);
         }
 
         public IActionResult Product(int id)
