@@ -75,7 +75,6 @@ namespace InternetShop.BL
         public ModelCategory GetRootCategory()
         {
             var category = _ds.GetTopCategory();
-            //var children = _ds.GetChildCategoriesById(category.Id);
             return new ModelCategory()
             {
                 Id = category.Id,
@@ -94,40 +93,13 @@ namespace InternetShop.BL
                          where category.ChildId == p.CategoryId
                          select new ModelCategory()
                          {
-                             // ChildId = p.ChildId,
                              Id = p.Id,
                              Title = p.Title
                          }),
-               // ChildId = category.ChildId
 
             };
 
-            //foreach (var item in categories)
-            //{
-            //    yield return new ModelCategory()
-            //    {
-            //        Id = item.Id,
-            //        Title = item.Title,
-            //        Products = (from p in item.Products
-            //                    where p != null
-            //                    select new ModelProduct()
-            //                    {
-            //                        Id = p.Id,
-            //                        Description = p.Description,
-            //                        Price = p.Price,
-            //                        Title = p.Title
-            //                    }).ToList(),
-            //        Child = (from p in item.Child 
-            //                 select new ModelCategory()
-            //                 {
-            //                     Title = p.Title,
-            //                     Id = p.Id,
-            //                     ChildId = p.ChildId
-
-            //                 })
-            //    };
-            //}
-            //map to Model Category
+            
         }
 
         public ModelCategory GetCategoryById(int id)

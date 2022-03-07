@@ -9,21 +9,21 @@ namespace InternetShop.DAL.Interfaces
 {
     public interface IDataSource
     {
-        void AddProduct(ProductDTO product);//Create Product
-        IEnumerable<ProductDTO> GetProductsByCategoryId(int id);//Read Products
-        ProductDTO GetProductById(int id);//Read Product
-        void EditProduct(ProductDTO product);//Update Product
-        void RemoveProductById(int id);//Delete Product
-        void AddCategory(CategoryDTO category);//Create Category
-        CategoryDTO GetTopCategory();//Read TopCategories
-        IEnumerable<CategoryDTO> GetChildCategoriesById(int id);//Read ChildCategories
-        void EditCategory(CategoryDTO category);//Update Category
-        void RemoveCategoryById(int id);//Delete Category
-        void AddOrder(OrderDTO order);//Create Order
-        OrderDTO GetOrderById(int id);//Read Order
-        IEnumerable<OrderDTO> GetOrders();//Read orders
-        OrderDTO GetOrderByClient(Guid id);//Read OrdersByClientId
-        void EditOrder(OrderDTO order);//Update Order
+        void AddProduct(ProductDTO product);
+        IEnumerable<ProductDTO> GetProductsByCategoryId(int id);
+        ProductDTO GetProductById(int id);
+        void EditProduct(ProductDTO product);
+        void RemoveProductById(int id);
+        void AddCategory(CategoryDTO category);
+        CategoryDTO GetTopCategory();
+        IEnumerable<CategoryDTO> GetChildCategoriesById(int id);
+        void EditCategory(CategoryDTO category);
+        void RemoveCategoryById(int id);
+        void AddOrder(OrderDTO order);
+        OrderDTO GetOrderById(int id);
+        IEnumerable<OrderDTO> GetOrders();
+        OrderDTO GetOrderByClient(Guid id);
+        void EditOrder(OrderDTO order);
 
         void AddProductToOrder(OrderDTO order, ProductDTO product);
         void AddProductToCategory(CategoryDTO category, ProductDTO product);
