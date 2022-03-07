@@ -150,10 +150,9 @@ namespace InternetShop.BL
                                     NumberOfPurchase = p.NumberOfPurchase
                                 }).ToList(),
                      Child = (from p in category.Child
-                              where category.ChildId == p.CategoryId
+                             
                               select new ModelCategory()
                               {
-                                  ChildId = p.ChildId,
                                   Id = p.Id,
                                   Title = p.Title
                               })

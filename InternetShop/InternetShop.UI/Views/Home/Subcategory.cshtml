@@ -7,14 +7,10 @@
     {
             <a href="/Home/Product/@prod.Id">@prod.Title</a><br/>
     }
-    if (Model.ChildId.HasValue)
+    
+    foreach (var subcategory in Model.Child)
     {
-        foreach (var subcategory in Model.Child)
-        {
-            @subcategory.Title <a href="/Home/Subcategory/@subcategory.Id">Subcategory </a>
-
-
-        }
+        @subcategory.Title <a href="/Home/Subcategory/@subcategory.Id">Subcategory </a>
     }
 }
 
