@@ -32,7 +32,6 @@ namespace InternetShop.DAL
         }
         public void EditProduct(ProductDTO product)
         {
-            //Ставит CategoryId в null +
             var editp = (from p in _dBContext.Products where p.Id == product.Id select p).FirstOrDefault();
 
             editp.Description = product.Description;
@@ -76,12 +75,7 @@ namespace InternetShop.DAL
         }
 
         public void RemoveCategoryById(int id)
-        {
-            // TODO: What should we do with child categories?
-            // Remove or Assign as root
-            // TODO: Thinking about other cases while remove categories
-            //1) If we remove category, we need to remove all its child
-            //2) If we remove category, we need to change categories for products that contains old category(categories) 
+        { 
             if (id <= 0)
                 throw new ArgumentException();
             var category = (from p in _dBContext.Categories
@@ -92,20 +86,13 @@ namespace InternetShop.DAL
 
             var products = from p in _dBContext.Products
                            where p.CategoryId.Value == id
-                           select p;//?
+                           select p;
             foreach (var item in products)
             {
                 item.CategoryId = null;
                 _dBContext.Products.Update(item);
             }
             _dBContext.SaveChanges();
-
-
-            //_dBContext.Categories.Remove();
-            //_dBContext.Database.ExecuteSqlInterpolated($"DELETE Products FROM CATEGORIES WHERE ID={id}");
-            //_dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE CategoryId={id}");
-            //_dBContext.Database.ExecuteSqlInterpolated($"DELETE FROM CATEGORIES WHERE ID={id}");
-
         }
 
         public IEnumerable<ProductDTO> GetProductsByCategoryId(int id)
@@ -137,33 +124,6 @@ namespace InternetShop.DAL
                 Id = rootID
 
             };
-
-            //IEnumerable < CategoryDTO > categories = from p in _dBContext.Categories
-            //                                         where p.CategoryId == rootID
-            //                                      select new CategoryDTO()
-            //                                      {
-            //                                          Id = p.Id,
-            //                                          Title = p.Title,
-            //                                          Products = (from x in p.Products
-            //                                                      select new ProductDTO()
-            //                                                      {
-            //                                                          Id = x.Id,
-            //                                                          Description = x.Description,
-            //                                                          Price = x.Price,
-            //                                                          Title = x.Title
-            //                                                      }).ToList(),
-            //                                         Child = (from c in _dBContext.Categories where p.ChildId == c.CategoryId
-            //                                                  select new CategoryDTO()
-            //                                                  {
-            //                                                      Title = c.Title,
-            //                                                      Id = c.Id,
-            //                                                      ChildId = c.ChildId,
-            //                                                      CategoryId = c.CategoryId
-            //                                                  }).ToList(),                                                 
-
-            //                                      };
-            
-            //return categories.ToList();
         }
 
         public IEnumerable<CategoryDTO> GetChildCategoriesById(int id)
@@ -281,7 +241,7 @@ namespace InternetShop.DAL
                                where x.Id == p.Id
                                select x).Count();
                 if(IsExists == 0)
-                {   //delete from db
+                {   
                     deletedEntities.Add(p);
                 }              
             }
@@ -309,11 +269,7 @@ namespace InternetShop.DAL
                 entityOrder.Products.Remove(item);
             }
             _dBContext.Orders.Update(entityOrder);
-            _dBContext.SaveChanges();
-             
-            
-            //throw new NotImplementedException("TODO: change product list with compare old and new list");
-            
+            _dBContext.SaveChanges();           
         }
 
         public OrderDTO GetOrderById(int id)
@@ -366,7 +322,7 @@ namespace InternetShop.DAL
         {
             var tmpCategory = (from c in _dBContext.Categories where c.Id == category.Id select c).FirstOrDefault();
             var tmpProduct = (from p in _dBContext.Products where p.Id == product.Id select p).FirstOrDefault();
-            tmpCategory.Products.Add(tmpProduct);//Null Reference Exception
+            tmpCategory.Products.Add(tmpProduct);
             _dBContext.SaveChanges();
         }
 
