@@ -259,8 +259,7 @@ namespace InternetShop.DAL
             {
                 CategoryId = category.Id,
                 Id = category.Id,
-                Title = category.Title,
-                ChildId = category.ChildId
+                Title = category.Title
             };
             _dBContext.Categories.Update(changedCategory);
             _dBContext.SaveChanges();
